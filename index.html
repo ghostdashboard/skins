@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <title>Ghost Dashboard - Skin SDK</title>
+  </head>
+  <body>
+    <div class="container">
+      <iframe src="" frameborder="0" name="client" id="renderFrame" title="renderFrame"></iframe>
+
+      <div class="controls">
+        <button type="button" onclick="toggleServerConnectionStatus()">Toggle Server connection</button>
+        <button type="button" onclick="toggleAnimation('animIn')">Animation IN</button>
+        <button type="button" onclick="toggleAnimation('animOut')">Animation OUT</button>
+        <button type="button" onclick="loadExample('scale')">Load 'scale' example</button>
+        <button type="button" onclick="loadExample('simple')">Load 'simple' example</button>
+        <button type="button" onclick="loadDev()">Load dev skin</button>
+        <button type="button" onclick="loadBase()">Load base skin</button>
+        <button type="button" onclick="openModal('colors')">Change colors</button>
+        <button type="button" onclick="openModal('settings')">Change settings</button>
+        <button type="button" onclick="resetSettings()">Reset settings</button>
+        <button type="button" onclick="resetOdo()">Reset odometer</button>
+      </div>
+
+      <div id="modal" class="hide">
+        <div class="modal-content">
+          <button type="button" onclick="closeModal()" class="close">X</button>
+          <div class="colors hide">
+            <h2>Change colors</h2>
+            <div class="buttons">
+              <button type="button" onclick="setColor(this, 'cMain')">Main color</button>
+              <button type="button" onclick="setColor(this, 'cSec')">Secondary color</button>
+              <button type="button" onclick="setColor(this, 'cRed')">Redline color</button>
+              <button type="button" onclick="setColor(this, 'cBg')">Background color</button>
+              <button type="button" onclick="setColor(this, 'cRpm')">RPM color</button>
+              <p>&nbsp;</p>
+              <button type="button" onclick="saveColor()">Save</button>
+            </div>
+            <div class="picker" id="pickerContainer"></div>
+          </div>
+          <div class="settings hide">
+            <h2>Change settings</h2>
+            <p><b>IMPORTANT:</b> Numbers only. Invalid fields will be ignored.</p>
+            <div class="form" id="form">
+              <label for="rpmM">Max RPM</label>
+              <select class="formItem" name="rpmM" id="rpmM">
+                <option value="6">6000</option>
+                <option value="7">7000</option>
+                <option value="8">8000</option>
+                <option value="9">9000</option>
+                <option value="10">10000</option>
+              </select>
+              <label for="sLigt">Shift Light</label>
+              <input class="formItem" type="number" id="sLigt" min="2000" max="10000" step="250" />
+              <label for="redline">Min Redline</label>
+              <input class="formItem" type="number" id="redline" min="2000" max="10000" step="250" />
+              <label for="icon">Icons style</label>
+              <select class="formItem" name="icon" id="icon">
+                <option value="1">Monochromatic</option>
+                <option value="2">Colored</option>
+              </select>
+              <label for="clt">Max CLT</label>
+              <input class="formItem" type="number" id="clt" min="20" max="200" step="5" />
+              <label for="mat">Max MAT</label>
+              <input class="formItem" type="number" id="mat" min="20" max="200" step="5" />
+              <label for="pOil">Max Oil Press.</label>
+              <input class="formItem" type="number" id="pOil" min="2" max="200" step="0.1" />
+              <label for="tOil">Max Oil Temp</label>
+              <input class="formItem" type="number" id="tOil" min="20" max="200" step="5" />
+              <label for="pFuel">Max Fuel Press.</label>
+              <input class="formItem" type="number" id="pFuel" min="2" max="200" step="0.1" />
+              <label for="pBoost">Max Boost</label>
+              <input class="formItem" type="number" id="pBoost" min="0" max="200" step="0.1" />
+              <label for="tKm">Base Total KM</label>
+              <input class="formItem" type="number" id="tKm" min="0" max="10000000" step="100" />
+              <label for="sCan">Enable CAN</label>
+              <select class="formItem" name="sCan" id="sCan">
+                <option value="1">Enabled</option>
+                <option value="2">Disabled</option>
+              </select>
+              <label for="aSpd">Speedometer algorithm</label>
+              <select class="formItem" name="aSpd" id="aSpd">
+                <option value="1">Higher Accuracy</option>
+                <option value="2">Higher Frequency</option>
+              </select>
+              <label for="sVss">Speedometer Source</label>
+              <select class="formItem" name="sVss" id="sVss">
+                <option value="1">Internal module</option>
+                <option value="2">CAN</option>
+              </select>
+              <label for="sRpm">RPM Source</label>
+              <select class="formItem" name="sRpm" id="sRpm">
+                <option value="1">Internal module</option>
+                <option value="2">CAN</option>
+              </select>
+              <label for="sClt">CLT Source</label>
+              <select class="formItem" name="sClt" id="sClt">
+                <option value="1">Internal module</option>
+                <option value="2">CAN</option>
+              </select>
+              <label for="batt">Max Battery</label>
+              <input class="formItem" type="number" id="batt" min="8" max="20" step="1" />
+              <label for="spdM">Max Speed</label>
+              <input class="formItem" type="number" id="spdM" min="20" max="400" step="10" />
+              <button type="button" onclick="saveSettingsChange()">Save</button>
+              <button type="button" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vanilla-picker@2"></script>
+    <script src="assets/defaultSettings.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      const elems = [
+        'renderFrame', 'modal', 'pickerContainer',
+      ].reduce((acc, id) => ({ ...acc, [id]: document.getElementById(id) }), {});
+      const { renderFrame, modal, pickerContainer } = elems;
+      const root = document.documentElement;
+      const renderWindow = renderFrame.contentWindow;
+      const storage = JSON.parse(localStorage.getItem(CONFIG.CONFIG_STORAGE_KEY)) || {};
+      let options = { ...defaultOptions, ...storage };
+      let picker;
+      const { colors } = options.theme;
+
+      const showRenderFrame = (path) => {
+        renderFrame.setAttribute("src", path);
+      };
+
+      const renderMessage = (msg) => {
+        renderWindow.postMessage(msg, '*');
+      };
+
+      const refreshRender = () => {
+        if (loadDev(false)) return;
+        showRenderFrame(CONFIG.BASE_PATH);
+      }
+
+      const saveSettings = (obj, refreshUI = false) => {
+        options = JSON.parse(localStorage.getItem(CONFIG.CONFIG_STORAGE_KEY));
+        options = { ...defaultOptions, ...options, ...obj };
+        localStorage.setItem(CONFIG.CONFIG_STORAGE_KEY, JSON.stringify(options));
+        if (!refreshUI) return;
+        window.location.reload();
+      }
+
+      const saveFirstSetupSettings = () => {
+        localStorage.setItem(CONFIG.CONFIG_STORAGE_KEY, JSON.stringify(options));
+      }
+
+      const toggleServerConnectionStatus = () => {
+        renderMessage({ action: 'toggleSimulator' });
+      };
+
+      const resetOdo = () => {
+        renderMessage({ action: 'odoreset' });
+      };
+
+      const toggleAnimation = (trigger) => {
+        renderMessage({ action: trigger });
+      };
+
+      const loadExample = (skin) => {
+        showRenderFrame(`${CONFIG.EXAMPLE_PATH}/${skin}/`);
+      };
+
+      const loadBase = () => {
+        showRenderFrame(CONFIG.BASE_PATH);
+      };
+
+      const loadDev = (request = true) => {
+        const currentLocal = localStorage.getItem(CONFIG.DEV_PATH_KEY);
+        if (currentLocal) {
+          showRenderFrame(currentLocal);
+          return true;
+        }
+        if (!request) return false;
+        requestDevPath();
+        return true;
+      };
+
+      const requestDevPath = () => {
+        const path = prompt('Please enter the folder name of your skin (ex: "my-skin")');
+        if (!path) return;
+        localStorage.setItem(CONFIG.DEV_PATH_KEY, `${CONFIG.EXAMPLE_PATH}/${path}/`);
+        showRenderFrame(`${CONFIG.EXAMPLE_PATH}/${path}/`);
+      };
+
+      const openModal = (type) => {
+        modal.classList.replace('hide', 'show');
+        modal.querySelectorAll('.modal-content > div').forEach(el => el.classList.replace('show', 'hide'));
+        modal.querySelector(`.${type}`).classList.replace('hide', 'show');
+      }
+
+      const closeModal = () => {
+        modal.classList.replace('show', 'hide');
+        destroyPicker();
+      }
+
+      const destroyPicker = () => {
+        if (picker) picker.destroy();
+        picker = null;
+      }
+
+      const setColor = (el, color) => {
+        if (picker) destroyPicker();
+        picker = new Picker({
+          parent: pickerContainer,
+          popup: false,
+          color: options.theme.colors[color],
+          alpha: false,
+          editorFormat: 'hex',
+          onDone: (c) => {
+            const hex = c.hex.substring(0, 7);
+            root.style.setProperty(`--${color}`, hex);
+            colors[color] = hex;
+            destroyPicker();
+          }
+        });
+        picker.openHandler();
+      }
+
+      const saveColor = () => {
+        closeModal();
+        saveSettings({ theme: { ...options.theme, colors } }, true);
+      }
+
+      const resetSettings = () => {
+        if (!confirm('Are you sure you want to reset all settings?')) return;
+        localStorage.clear();
+        window.location.reload();
+      }
+
+      const handleForm = () => {
+        document.querySelectorAll('#form .formItem')
+          .forEach(el => {
+            el.value = options[el.id];
+            el.addEventListener('change', (e) => {
+              const { id, value } = e.target;
+              if (!value || value === '') return;
+              options[id] = parseInt(value, 10);
+            })
+          });
+      }
+
+      const saveSettingsChange = () => {
+        closeModal();
+        saveSettings(options, true);
+      }
+
+      const init = () => {
+        if(Object.keys(storage).length < 1) {
+          saveFirstSetupSettings();
+          window.location.reload();
+        }
+
+        root.style.setProperty('--cMain', colors.cMain);
+        root.style.setProperty('--cSec', colors.cSec);
+        root.style.setProperty('--cRed', colors.cRed);
+        root.style.setProperty('--cBg', colors.cBg);
+        root.style.setProperty('--cRpm', colors.cRpm);
+
+        refreshRender();
+        handleForm();
+      }
+
+      window.onload = () => init();
+    </script>
+  </body>
+</html>

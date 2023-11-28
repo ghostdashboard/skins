@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2480px" height="2171px" version="1.0" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2480000 2170994" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#FEFEFE}
+   ]]>
+  </style>
+ </defs>
+   <path class="fil0" d="M2465088 2034681l-1149475 -1990961c-15623,-27048 -44478,-43720 -75724,-43720 -31246,0 -60101,16672 -75724,43720l-1152448 1996113c-15622,27049 -15622,60393 0,87441 15623,27049 44490,43720 75724,43720l2304885 0c82,0 175,0 233,0 48302,0 87441,-39139 87441,-87441 0,-18105 -5503,-34917 -14912,-48872zm-2226199 -38568l1000989 -1733790 1000990 1733790 -2001979 0z"/>
+   <path class="fil0" d="M1152448 738328l0 744752c0,48302 39139,87441 87441,87441 48302,0 87441,-39139 87441,-87441l0 -744752c0,-48302 -39139,-87441 -87441,-87441 -48302,0 -87441,39149 -87441,87441z"/>
+   <circle class="fil0" cx="1239889" cy="1757621" r="108753"/>
+</svg>

@@ -1,0 +1,866 @@
+@font-face {
+  font-family: "Rubik";
+  font-style: medium;
+  font-weight: 600;
+  src: local("Rubik Medium"), local("Rubik-Medium"),
+    url("../../assets/fonts/Rubik-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "ChivoMono";
+  font-style: light;
+  font-weight: 400;
+  src: local("ChivoMono Light"), local("ChivoMono-Light"),
+    url("../../assets/fonts/ChivoMono-Light.ttf") format("opentype");
+}
+
+:root {
+  --rpm-bar: 0;
+  --rpm-color: #00d3ff;
+  --lFuel-gauge-bar: 0;
+  --clt-gauge-bar: 0;
+  --mat-gauge-bar: 0;
+  --boost-gauge-bar: 11270;
+  --rpm-deg: 9deg;
+  --kmh-deg: 9deg;
+  --main-color: #00d3ff;
+  --second-color: #00d3ff;
+  --tps-gauge-bar: 11270;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #000;
+  color: #eee;
+  font-family: "Rubik", sans-serif;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeSpeed;
+}
+
+u,
+a,
+b,
+i {
+  text-decoration: none;
+}
+
+/* svg styles */
+.str0 {
+  stroke: red;
+  stroke-width: 12371.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.str1 {
+  stroke: #cccccc;
+  stroke-width: 64665.6;
+}
+.str3 {
+  stroke: black;
+  stroke-width: 245987;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.str4 {
+  stroke: #4d4d4d;
+  stroke-width: 47.9614;
+}
+.str5 {
+  stroke: #fff;
+  stroke-width: 121.798;
+}
+.str6 {
+  stroke: var(--main-color);
+  stroke-width: 121.798;
+  stroke-dasharray: 11270;
+  stroke-dashoffset: 11270;
+  will-change: stroke-dashoffset;
+}
+.str7 {
+  stroke: black;
+  stroke-width: 250.652;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fil0 {
+  fill: #212121;
+}
+.fil1 {
+  fill: url(#id2);
+}
+.fil2 {
+  fill: #4d4d4d;
+  fill-rule: nonzero;
+}
+.fil3 {
+  fill: #4d4d4d;
+  fill-rule: nonzero;
+}
+.fil4 {
+  fill: #a2a2a2;
+  fill-rule: nonzero;
+}
+.fil5 {
+  fill: #e6e6e6;
+}
+.fil6 {
+  fill: none;
+  fill-rule: nonzero;
+}
+.fil7 {
+  fill: #e6e6e6;
+  fill-rule: nonzero;
+}
+.fil8 {
+  fill: #4d4d4d;
+}
+.fil9 {
+  fill: red;
+  fill-rule: nonzero;
+}
+.fil10 {
+  fill: #2e2e2e;
+}
+.fil11 {
+  fill: #4d4d4d;
+}
+.fil13 {
+  fill: #4d4d4d;
+  fill-rule: nonzero;
+}
+.fil14 {
+  fill: #a2a2a2;
+  fill-rule: nonzero;
+}
+.fil15 {
+  fill: #000000;
+}
+
+.stop0 {
+  stop-opacity: 0;
+  stop-color: #972100;
+}
+
+.stop1 {
+  stop-opacity: 1;
+  stop-color: #FF0000;
+}
+
+.mainColorFill {
+  fill: var(--main-color);
+}
+
+.secondColorFill {
+  fill: var(--second-color);
+}
+
+.redlineColorFill {
+  fill: var(--rpm-color);
+}
+
+/* animation variants */
+#container.connected .str5 {
+  stroke: #4d4d4d;
+}
+#container.connected .str6 {
+  stroke: var(--main-color);
+}
+
+#container {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  top: 1px;
+  left: 0px;
+  border: none;
+  overflow: hidden;
+  transform: scale(1);
+  max-height: 500px;
+}
+
+#top-info {
+  position: absolute;
+  width: 100%;
+  height: 90px;
+  top: 15px;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  z-index: 20;
+  will-change: opacity;
+}
+
+#top-info .icons {
+  position: absolute;
+  text-align: center;
+  width: 50%;
+  top: 0;
+  left: 25%;
+}
+
+#top-info .icons.bottom {
+  bottom: 0;
+  top: auto;
+}
+
+#top-info .icons span {
+  height: 35px;
+  align-items: center;
+  margin: 0;
+  width: calc(75% / 6);
+  opacity: 0.1;
+  padding: 0;
+  display: inline-block;
+  will-change: opacity;
+}
+
+#top-info .icons #OIL img {
+  max-width: 45px;
+}
+
+#top-info .icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+#top-info .icons span img {
+  width: auto;
+  height: 35px;
+  max-width: 38px;
+  line-height: 40px;
+  display: inline-block;
+  align-self: center;
+}
+
+#top-info .icons .icons-divider {
+  width: 240px;
+}
+
+#top-info .icons .icons-divider img {
+  width: 50px;
+  max-width: inherit;
+  max-height: 50px;
+}
+
+#bottom-odo {
+  font-size: 16px;
+  height: 30px;
+  width: 28%;
+  z-index: 10;
+  position: absolute;
+  bottom: 80px;
+  color: #aaa;
+  font-weight: 600;
+  left: 36%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  will-change: transform, opacity;
+}
+
+#bottom-odo > div {
+  display: flex;
+  text-align: center;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+#bottom-odo span {
+  font-family: "ChivoMono";
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  margin: 0 5px;
+  color: #eee;
+  font-weight: 400;
+}
+
+#bottom-odo .left {
+  left: 0;
+}
+
+#bottom-odo .center {
+  width: 380px;
+  left: calc(50% - 190px);
+}
+
+#bottom-odo .center * {
+  font-size: 14px;
+  display: inline-block;
+  font-family: unset;
+  font-weight: initial;
+  padding: 0;
+  margin: 0;
+  letter-spacing: initial;
+}
+
+#bottom-odo .right {
+  right: 0;
+}
+
+.circle {
+  display: block;
+  height: 445px;
+  width: 445px;
+  position: absolute;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  z-index: 2;
+  opacity: 1;
+  left: 20px;
+  top: 17px;
+  will-change: transform;
+}
+
+#right-gauge.circle {
+  right: 20px;
+  left: initial;
+}
+
+.circle .circleBg {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  z-index: 1;
+  display: block;
+}
+
+.circle .circleBg svg {
+  display: block;
+  width: 445px;
+  height: 445px;
+}
+
+.circle .circleBg .rpmGauge {
+  width: 425px;
+  height: 425px;
+  position: absolute;
+  top: 10.5px;
+  left: 10.5px;
+}
+
+.circle .circleBg .rpmGauge svg {
+  width: 425px;
+  height: 425px;
+  display: none;
+}
+
+.circle .needle {
+  width: 298px;
+  height: 298px;
+  position: absolute;
+  top: 73.5px;
+  left: 73.5px;
+  margin: 0px;
+  z-index: 4;
+  opacity: 0;
+}
+
+.circle span {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: 100%;
+}
+
+#right-gauge.circle .neon {
+  margin: 0px 0 0 -2px;
+}
+
+#right-gauge.circle .circleBg:before {
+  margin: 0px 0 0 -2px;
+  right: 2.7%;
+}
+
+#container.connected #left-gauge.circle .needle svg {
+  transform: rotate(var(--rpm-deg));
+  animation: none;
+}
+
+#container.connected #right-gauge.circle .needle svg {
+  transform: rotate(var(--kmh-deg));
+  animation: none;
+}
+
+#container.connected #tps-gauge {
+  stroke-dashoffset: var(--tps-gauge-bar);
+  animation: none;
+}
+
+#container.connected #boost-gauge {
+  stroke-dashoffset: var(--boost-gauge-bar);
+  animation: none;
+}
+
+#left-gauge.circle.show .needle,
+#left-gauge.circle.show .neon,
+#right-gauge.circle.show .needle,
+#right-gauge.circle.show .neon {
+  opacity: 1;
+}
+
+#center-mask {
+  position: absolute;
+  height: 445px;
+  width: calc(100vw - 230px);
+  left: 115px;
+  margin: 0;
+  opacity: 0;
+  z-index: 5;
+  top: 17px;
+  will-change: opacity;
+}
+
+#right-gauge.circle .centerComponent {
+  margin: 0 20px 0 0;
+}
+
+#statusbar {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 4px;
+  color: #666;
+  font-size: 12px;
+}
+
+#loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 1;
+}
+
+#loader video {
+  height: 480px;
+  width: 480px;
+  left: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+#loader video:last-child {
+  left: calc(100% - 480px);
+}
+
+#side-gauges {
+  position: absolute;
+  height: 367px;
+  z-index: 10;
+  opacity: 1;
+  width: calc(100vw - 230px);
+  left: 115px;
+}
+
+#side-gauges .centerComponent {
+  height: 254px;
+  width: 254px;
+  position: absolute;
+  z-index: 5;
+  margin: -126.5px 0 0 0;
+  bottom: 0;
+  left: 0;
+}
+
+#side-gauges .centerComponent:last-child {
+  left: initial;
+  right: 0;
+}
+
+#side-gauges .centerComponent .value,
+#side-gauges .centerComponent .label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+#side-gauges .centerComponent .value {
+  top: 50%;
+  font-size: 70px;
+  font-family: "ChivoMono";
+  font-weight: 400;
+  letter-spacing: -4px;
+  margin: -49px 0 0 0;
+}
+
+#side-gauges .centerComponent .centerGauge {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+#side-gauges .centerComponent .centerGauge svg {
+  position: absolute;
+  top: 15px;
+  left: 16.5px;
+  opacity: 0;
+  will-change: opacity;
+}
+
+#side-gauges .centerComponent .centerGauge p,
+#side-gauges .centerComponent .centerGauge span {
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
+#side-gauges .centerComponent .centerGauge p {
+  bottom: 48px;
+  color: #9e9e9e;
+}
+
+#side-gauges .centerComponent .centerGauge span {
+  bottom: 22px;
+  font-size: 20px;
+}
+
+#side-gauges .centerComponent .centerGauge span div {
+  display: inline-block;
+}
+
+#side-gauges .centerComponent .centerGauge span div:last-child {
+  font-size: initial;
+}
+
+#side-gauges .centerComponent .centerGauge span div:first-child {
+  font-family: "ChivoMono";
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.mini-gauge .current-value {
+  position: absolute;
+  font-size: 42px;
+  letter-spacing: -1px;
+  top: 115px;
+  left: -2px;
+  text-align: center;
+  width: 48px;
+}
+
+#comb-level polygon {
+  fill: var(--main-color);
+  transform-origin: bottom center;
+  transform: scaleY(var(--lFuel-gauge-bar));
+  will-change: transform;
+}
+
+#clt-level polygon {
+  fill: var(--main-color);
+  transform-origin: bottom center;
+  transform: scaleY(var(--clt-gauge-bar));
+  will-change: transform;
+}
+
+#centerRightWidget {
+  position: absolute;
+  top: 125px;
+  z-index: 20;
+  width: 36%;
+  height: 208px;
+  color: #aaa;
+  left: 32%;
+  will-change: opacity;
+}
+
+#centerRightWidget .mini-gauge {
+  position: absolute;
+  height: 100%;
+  display: inline-block;
+  left: 0;
+}
+
+#centerRightWidget .mini-gauge:last-child {
+  left: auto;
+  right: 0;
+}
+
+#centerRightWidget .mini-gauge:last-child .current-value {
+  right: 50px;
+  left: auto;
+}
+
+#centerRightWidget .mini-gauge .current-value {
+  font-size: 14px;
+  text-align: center;
+  left: 50px;
+  right: auto;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #fff;
+}
+
+#centerRightWidget .mini-gauge .current-value > span {
+  font-family: "ChivoMono";
+  font-size: 18px;
+  margin: 0 2px 0 0;
+}
+
+#centerLeftWidget {
+  position: absolute;
+  z-index: 20;
+  width: 14%;
+  left: 43%;
+  top: 134px;
+  will-change: opacity;
+  height: 210px;
+}
+
+#centerLeftWidget .micro-gauges {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  text-align: center;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge {
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: none;
+  overflow: hidden;
+  height: 28px;
+  width: 100%;
+  display: flex;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  color: #646464;
+  border-top: 3px solid #2e2e2e;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge * {
+  font-weight: 600;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge > div {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge > div:after,
+#centerLeftWidget .micro-gauges .micro-gauge > p:after {
+  left: inherit;
+  right: -9px;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge > p:before,
+#centerLeftWidget .micro-gauges .micro-gauge > p:after {
+  bottom: -10px;
+  top: inherit;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge > p {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge > span {
+  font-family: "ChivoMono";
+  font-size: 32px;
+  color: #ffffff;
+  display: inline-block;
+  width: 70px;
+  font-weight: 400;
+}
+
+#bg {
+  height: 100%;
+  text-align: center;
+  z-index: 0;
+  position: absolute;
+  top: 33px;
+  left: 22px;
+  right: 22px;
+  overflow: hidden;
+  opacity: 0;
+  will-change: transform;
+}
+
+#bg svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#bg svg:last-child {
+  left: unset;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+.anim-in #center-mask {
+  animation-name: fade-in;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+  animation-delay: 7s;
+}
+
+.anim-in #left-gauge.circle .needle svg,
+.anim-in #right-gauge.circle .needle svg {
+  transform: rotate(9deg);
+  animation-name: rotate-reverse;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  animation-delay: 4s;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.anim-in #side-gauges .centerComponent .centerGauge svg {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #bg {
+  animation-name: fade-in;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 6s;
+}
+
+[class*="gastep"] {
+  opacity: 0;
+  will-change: opacity;
+}
+
+.anim-in [class*="gastep"] {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 0.45s;
+}
+
+.gastep1 {
+  animation-delay: 1s;
+}
+.gastep2 {
+  animation-delay: 1.5s;
+}
+.gastep3 {
+  animation-delay: 2s;
+}
+.gastep4 {
+  animation-delay: 2.5s;
+}
+.gastep5 {
+  animation-delay: 3s;
+}
+.gastep6 {
+  animation-delay: 3.5s;
+}
+.gastep7 {
+  animation-delay: 4s;
+}
+.gastep8 {
+  animation-delay: 4.5s;
+}
+.gastep9 {
+  animation-delay: 5s;
+}
+.gastep10 {
+  animation-delay: 5.5s;
+}
+
+.anim-out .circle,
+.anim-out #center-mask,
+.anim-out #centerRightWidget,
+.anim-out #side-gauges,
+.anim-out #centerLeftWidget,
+.anim-out #bottom-odo,
+.anim-out #bg {
+  opacity: 1;
+  transform: scale(1);
+  animation-name: fade-out;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 0.7s;
+}
+
+.anim-out #center-mask,
+.anim-out #bg {
+  animation-delay: 2s;
+}
+
+.anim-out #centerRightWidget,
+.anim-out #side-gauges,
+.anim-out #centerLeftWidget,
+.anim-out #bottom-odo {
+  animation-delay: 1s;
+}
+
+@keyframes fade-in {
+  1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate-reverse {
+  1% {
+    transform: rotate(9deg);
+  }
+  50% {
+    transform: rotate(262deg);
+  }
+  100% {
+    transform: rotate(9deg);
+  }
+}
+
+@keyframes fade-out {
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.01;
+  }
+}
