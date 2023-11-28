@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="5000px" height="5458px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 238 260" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#6A777D}
+   ]]>
+  </style>
+ </defs>
+ <path class="fil0" d="M228 61l0 0 -54 -54 -15 16 30 30c-13,5 -23,18 -23,34 0,20 16,36 36,36 5,0 10,-1 15,-3l0 104c0,8 -7,14 -15,14 -8,0 -14,-6 -14,-14l0 -65c0,-16 -13,-29 -29,-29l-14 0 0 -101c0,-16 -13,-29 -29,-29l-87 0c-16,0 -29,13 -29,29l0 231 145 0 0 -108 21 0 0 72c0,20 16,36 36,36 20,0 36,-16 36,-36l0 -137c0,-10 -4,-19 -10,-26zm-112 40l-87 0 0 -72 87 0 0 72zm86 0c-8,0 -14,-6 -14,-14 0,-8 6,-15 14,-15 8,0 15,7 15,15 0,8 -7,14 -15,14z" data-original="#000000" data-old_color="#000000"/>
+</svg>

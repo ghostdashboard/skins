@@ -1,0 +1,34 @@
+{
+  "name": "ghostdash-skins",
+  "version": "0.1.0",
+  "description": "Super simple development kit to support building skins (themes) for the Ghost Dashboard product.",
+  "main": "index.html",
+  "directories": {
+    "example": "community"
+  },
+  "scripts": {
+    "serve": "npx serve . -p 3210 -d -C -S"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghostdashboard/skins.git"
+  },
+  "keywords": [
+    "dashboard",
+    "ghost",
+    "dashboard",
+    "ghostdash",
+    "dashboard",
+    "skins",
+    "automotive",
+    "instrumentation",
+    "customizable",
+    "cluster"
+  ],
+  "author": "Leonardo Neris",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghostdashboard/skins/issues"
+  },
+  "homepage": "https://github.com/ghostdashboard/skins#readme"
+}

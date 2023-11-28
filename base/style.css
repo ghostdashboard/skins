@@ -1,0 +1,743 @@
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rubik Regular'), local('Rubik-Regular'), url('../../assets/fonts/Rubik-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: medium;
+  font-weight: 600;
+  src: local('Rubik Medium'), local('Rubik-Medium'), url('../../assets/fonts/Rubik-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ChivoMono';
+  font-style: light;
+  font-weight: 400;
+  src: local('ChivoMono Light'), local('ChivoMono-Light'), url('../../assets/fonts/ChivoMono-Light.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: 'ChivoMono';
+  font-style: normal;
+  font-weight: 700;
+  src: local('ChivoMono Plain'), local('ChivoMono-Regular'), url('../../assets/fonts/ChivoMono-Regular.ttf') format('opentype');
+}
+
+:root {
+  --mini-bar: 90deg, #001432, #00d3ff;
+  --mini-bar-red: 90deg, #210000, #e43f01;
+  --lFuel-gauge-bar: 0;
+  --clt-gauge-bar: 0;
+  --rpm-deg: -155deg;
+  --kmh-deg: 155deg;
+  --background-color: #00d3ff;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #000;
+  color: #EEE;
+  font-family: 'Rubik', sans-serif;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeSpeed;
+}
+
+u,
+a,
+b,
+i {
+  text-decoration: none;
+}
+
+#container {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  top: 1px;
+  left: 0px;
+  border: none;
+  overflow: hidden;
+  transform: scale(1);
+  max-height: 500px;
+}
+
+#top-info {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 32px);
+  top: 20px;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  z-index: 20;
+  opacity: 0.01;
+}
+
+#top-info .icons {
+  position: absolute;
+  text-align: center;
+  width: 40%;
+  top: 0;
+  left: 30%;
+}
+
+#top-info .icons.bottom {
+  bottom: 0;
+  top: auto;
+}
+
+#top-info .icons span {
+  height: 35px;
+  align-items: center;
+  margin: 0;
+  width: calc(95% / 6);
+  opacity: 0.15;
+  padding: 0;
+  display: inline-block;
+}
+
+#top-info .icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+#top-info .icons span img {
+  width: auto;
+  height: 35px;
+  max-width: 38px;
+  line-height: 40px;
+  display: inline-block;
+  align-self: center;
+}
+
+#top-info #oilSwitch img {
+  max-width: 45px;
+}
+
+#bottom-odo {
+  font-size: 16px;
+  height: 30px;
+  width: 48%;
+  z-index: 10;
+  position: absolute;
+  bottom: 85px;
+  color: #6a777d;
+  font-weight: 600;
+  left: 26%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.01;
+  will-change: transform, opacity;
+}
+
+#bottom-odo > div {
+  display: flex;
+  text-align: center;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+#bottom-odo span {
+  font-family: 'ChivoMono';
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  margin: 0 5px;
+  color: #EEE;
+  font-weight: 700;
+}
+
+#bottom-odo .left {
+  left: 0;
+}
+
+#bottom-odo .right {
+  right: 0;
+}
+
+.circle {
+  display: block;
+  height: 440px;
+  width: 440px;
+  position: absolute;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0;
+  transform: scale(0.2, 0.2);
+  z-index: 2;
+  opacity: 0.01;
+  left: 20px;
+  top: 20px;
+  will-change: transform, opacity;
+}
+
+#right-gauge.circle {
+  right: 20px;
+  left: initial;
+}
+
+.circle .needle {
+  width: 6px;
+  height: 80px;
+  position: absolute;
+  top: 2px;
+  left: 218px;
+  margin: 0px;
+  z-index: 4;
+  transform-origin: center 218px;
+  opacity: 1;
+  border-radius: 5px;
+  background: var(--background-color);
+  box-shadow: 0 4px 12px 0 #000, 0 20px 36px 4px var(--background-color);
+}
+
+.circle span {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 100%;
+  background-position: center;
+  background-size: 100%;
+}
+
+#container.connected #left-gauge.circle .needle {
+  transform: rotate(var(--kmh-deg));
+  animation: none;
+}
+
+#container.connected #right-gauge.circle .needle {
+  transform: rotate(var(--rpm-deg)) scaleX(-1);
+  animation: none;
+}
+
+#left-gauge.circle.show .needle,
+#right-gauge.circle.show .needle {
+  opacity: 1;
+}
+
+#right-gauge.circle .needle {
+  left: 216px;
+}
+
+#center-mask {
+  background-image: url('img/center_bg.png');
+  background-position: center 96px;
+  background-size: 588px 275px;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: flex;
+  height: 435px;
+  width: calc(100vw - 230px);
+  left: 115px;
+  margin: 0;
+  opacity: 1;
+  transform: scale3d(0, 0.5, 0.5);
+  z-index: 5;
+  top: 22px;
+  will-change: transform;
+}
+
+#right-gauge.circle .centerComponent {
+  margin: 0 20px 0 0;
+}
+
+#statusbar {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 4px;
+  color: #666;
+  font-size: 12px;
+}
+
+#side-gauges {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  opacity: 0.01;
+}
+
+#side-gauges .centerComponent {
+  height: 210px;
+  width: 260px;
+  position: absolute;
+  z-index: 5;
+  margin: -110px 0 0 0;
+  top: 50%;
+  left: 0;
+}
+
+#side-gauges .centerComponent:last-child {
+  left: initial;
+  right: 0;
+}
+
+#side-gauges .centerComponent .value,
+#side-gauges .centerComponent .label {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+#side-gauges .centerComponent .value {
+  top: 50%;
+  font-size: 70px;
+  font-family: "ChivoMono";
+  font-weight: 400;
+  letter-spacing: -4px;
+  margin: -60px 0 0 0;
+}
+
+#side-gauges .centerComponent .label {
+  padding-top: 10px;
+  top: 127px;
+  color: #6a777d;
+  transform: scaleY(0.9);
+  font-size: 20px;
+}
+
+.mini-gauge {
+  height: 60px;
+  position: relative;
+}
+
+.mini-gauge .current-value {
+  position: absolute;
+  font-size: 42px;
+  letter-spacing: -1px;
+  top: 0;
+  left: -2px;
+  width: 84%;
+  text-align: center;
+}
+
+.mini-gauge .unit {
+  position: absolute;
+  left: 41px;
+  top: 3px;
+  display: block;
+  font-size: 14px;
+}
+
+.mini-gauge .top-value {
+  font-weight: 600;
+  position: absolute;
+  right: -1px;
+  top: 25px;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.mini-gauge .gauge-bar {
+  height: 8px;
+  width: calc(100% - 4px);
+  border-color: #666;
+  border-style: solid;
+  border-top: none;
+  border-bottom: none;
+  border-width: 2px;
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 22px;
+  background: #1a2024;
+}
+
+.mini-gauge .gauge-bar span {
+  display: block;
+  position: relative;
+  height: 100%;
+  background: linear-gradient(var(--mini-bar));
+  margin: 0;
+  left: 0;
+  transform-origin: left;
+}
+
+.mini-gauge .min-value,
+.mini-gauge .max-value,
+.mini-gauge .mid-value {
+  font-weight: 600;
+  position: absolute;
+  left: 0px;
+  top: 30px;
+  letter-spacing: -1px;
+}
+
+.mini-gauge.with-icon .min-value,
+.mini-gauge.with-icon .max-value,
+.mini-gauge.with-icon .mid-value {
+  left: 38px;
+  top: 14px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.mini-gauge.with-icon .mid-value {
+  left: calc(50% + 7px);
+}
+
+.mini-gauge.with-icon .gauge-bar {
+  left: 55px;
+  width: calc(100% - 76px);
+  top: 26px;
+}
+
+.mini-gauge .label {
+  position: absolute;
+  width: 160px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  left: 0;
+  top: 65px;
+}
+
+.mini-gauge .max-value {
+  left: initial;
+  right: 0px;
+  text-align: right;
+}
+
+.mini-gauge .mid-value {
+  left: calc(50% - 13px);
+  width: 26px;
+  text-align: center;
+}
+
+.mini-gauge.with-icon>img {
+  height: 26px;
+  width: auto;
+  position: absolute;
+  top: 8px;
+  left: 0;
+}
+
+.mini-gauge.with-mid .gauge-bar:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 1px);
+  height: 60%;
+  width: 2px;
+  background: #BBBBBB;
+}
+
+#centerRightWidget {
+  position: absolute;
+  top: 130px;
+  z-index: 20;
+  width: 58%;
+  color: #AAA;
+  left: 21%;
+  opacity: 0.01;
+  will-change: transform, opacity;
+}
+
+#centerRightWidget .line:before {
+  content: "";
+  height: 100%;
+  width: 2px;
+  background: #36434a;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+}
+
+#centerRightWidget .mini-gauge {
+  position: relative;
+  height: 36px;
+  margin-bottom: 10px;
+  margin: 0 30px;
+  width: calc(50% - 62px);
+  display: inline-block;
+}
+
+#centerRightWidget .mini-gauge .current-value {
+  font-size: 20px;
+  text-align: center;
+  left: initial;
+  right: 0;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0px;
+  color: #FFF;
+}
+
+#centerRightWidget .mini-gauge .current-value>span {
+  font-family: 'ChivoMono';
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -1px;
+  margin: 0 2px 0 0;
+}
+
+#centerRightWidget .mini-gauge #fuelBar {
+  transform: scaleX(var(--lFuel-gauge-bar));
+}
+
+#centerRightWidget .mini-gauge #clt-bar {
+  transform: scaleX(var(--clt-gauge-bar));
+}
+
+#centerRightWidget .mini-gauge #clt-bar.red,
+#centerRightWidget .mini-gauge #mat-bar.red,
+#centerRightWidget .mini-gauge #fuelBar.red {
+  background: linear-gradient(var(--mini-bar-red))
+}
+
+#centerLeftWidget {
+  position: absolute;
+  z-index: 20;
+  width: 100%;
+  height: 72px;
+  display: block;
+  top: 212px;
+  opacity: 0.01;
+  will-change: transform, opacity;
+}
+
+#centerLeftWidget .mini-gauge {
+  width: 16.6vw;
+}
+
+#centerLeftWidget .micro-gauges {
+  position: absolute;
+  width: 60%;
+  top: 0;
+  min-width: 300px;
+  left: 20%;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge {
+  position: relative;
+  text-align: center;
+  font-size: 14px;
+  border-right: 2px solid #36434a;
+  border-top: none;
+  border-bottom: none;
+  overflow: hidden;
+  height: 68px;
+  width: calc(20% - 5px);
+  display: inline-block;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge:last-child {
+  border-right: none;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge>div {
+  font-weight: 600;
+  position: relative;
+  color: #6a777d;
+  text-align: center;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge>div:after,
+#centerLeftWidget .micro-gauges .micro-gauge>p:after {
+  left: inherit;
+  right: -9px;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge>p:before,
+#centerLeftWidget .micro-gauges .micro-gauge>p:after {
+  bottom: -10px;
+  top: inherit;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge>p {
+  margin: 0;
+  position: relative;
+  color: #6a777d;
+}
+
+#centerLeftWidget .micro-gauges .micro-gauge>span {
+  font-family: 'ChivoMono';
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 36px;
+  color: #FFFFFF;
+}
+
+.anim-in .circle {
+  animation-name: grow-from-center;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.anim-in #center-mask {
+  animation-name: grow-from-center-wide;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-duration: 1.5s;
+}
+
+.anim-in #top-info {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #centerRightWidget {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #side-gauges {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #centerLeftWidget {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #bottom-odo {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in #right-gauge.circle .needle {
+  transform: rotate(-155deg) scaleX(-1);
+  animation-name: rotate;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  animation-delay: 3s;
+}
+
+.anim-in #left-gauge.circle .needle {
+  transform: rotate(155deg);
+  animation-name: rotate-reverse;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 2s;
+  animation-delay: 3s;
+}
+
+.anim-out .circle,
+.anim-out #center-mask,
+.anim-out #centerRightWidget,
+.anim-out #side-gauges,
+.anim-out #centerLeftWidget,
+.anim-out #bottom-odo {
+  opacity: 1;
+  transform: scale(1);
+  animation-name: fade-out;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 0.7s;
+}
+
+.anim-out #center-mask {
+  animation-delay: 2s;
+}
+
+.anim-out #centerRightWidget,
+.anim-out #side-gauges,
+.anim-out #centerLeftWidget,
+.anim-out #bottom-odo {
+  animation-delay: 1s;
+}
+
+@keyframes grow-from-center {
+  1% {
+    transform: scale(0.2, 0.2);
+    opacity: 0.01;
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes grow-from-center-wide {
+  1%,
+  51% {
+    transform: scale(1, 0.001);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes fade-in {
+  1% {
+    opacity: 0.01;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  1% {
+    transform: rotate(-155deg) scaleX(-1);
+  }
+  50% {
+    transform: rotate(-385deg) scaleX(-1);
+  }
+  100% {
+    transform: rotate(-155deg) scaleX(-1);
+  }
+}
+
+@keyframes rotate-reverse {
+  1% {
+    transform: rotate(155deg);
+  }
+  50% {
+    transform: rotate(385deg);
+  }
+  100% {
+    transform: rotate(155deg);
+  }
+}
+
+@keyframes fade-out {
+  1% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.01;
+  }
+}

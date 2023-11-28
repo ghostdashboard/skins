@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Scale</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="container">
+    <div class="toplines">
+      <svg width="365px" height="42px" viewBox="0 0 114.13 13.13">
+        <path class="fil0 str0" d="M0.35 3.7c0.02,0 5.75,-2.84 5.96,-2.92 0.55,-0.21 1.02,-0.46 2.14,-0.43 28.2,0.75 55.86,1.49 84.05,2.44 1.13,0.04 2.32,0.22 3.33,0.74l17.95 9.25"/>
+      </svg>
+      <svg width="365px" height="42px" viewBox="0 0 114.13 13.13">
+        <path class="fil0 str0" d="M0.35 3.7c0.02,0 5.75,-2.84 5.96,-2.92 0.55,-0.21 1.02,-0.46 2.14,-0.43 28.2,0.75 55.86,1.49 84.05,2.44 1.13,0.04 2.32,0.22 3.33,0.74l17.95 9.25"/>
+      </svg>
+    </div>
+
+    <div id="top-info">
+      <section class="icons">
+        <span id="turnLeft"><img src="../../assets/icons/turn-left.svg" alt="turnLeft" /></span>
+        <span id="ECUErr"><img src="../../assets/icons/injection.svg" alt="ECUErr" /></span>
+        <span id="battAlt"><img src="../../assets/icons/battery.svg" alt="battAlt" /></span>
+        <span id="eBrake"><img src="../../assets/icons/handbrake.svg" alt="eBrake" /></span>
+        <span id="oilSwitch"><img src="../../assets/icons/oil.svg" alt="oilSwitch" /></span>
+        <span id="turnRight"><img src="../../assets/icons/turn-right.svg" alt="turnRight" /></span>
+      </section>
+      <section class="icons bottom">
+        <span id="highBeam"><img src="../../assets/icons/hheadlight.svg" alt="highBeam" /></span>
+        <span id="parkLights"><img src="../../assets/icons/headlight.svg" alt="parkLights" /></span>
+        <span id="fogLights"><img src="../../assets/icons/milha.svg" alt="fogLights" /></span>
+        <span id="auxLights"><img src="../../assets/icons/neblina.svg" alt="auxLights" /></span>
+        <span id="fan"><img src="../../assets/icons/fan.svg" alt="fan" /></span>
+        <span id="openDoor"><img src="../../assets/icons/door.svg" alt="openDoor" /></span>
+      </section>
+    </div>
+
+    <div id="top-gauges">
+      <div id="left-gauge-mini" class="gauge-mini">
+        <span><div></div></span>
+        <div class="value">
+          <img src="./img/fuel.svg" alt="fuel" />
+          <div><span id="fuelLevel">00</span>%</div>
+        </div>
+      </div>
+      <div id="right-gauge-mini" class="gauge-mini">
+        <span><div></div></span>
+        <div class="value">
+          <img src="./img/clt.svg" alt="clt" />
+          <div><span id="cltNow">00</span>°C</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-gauges">
+      <div id="left-gauge" class="circle">
+        <div class="numbers" id="rpmnumbers"></div>
+        <div class="bignumber" id="gear">N</div>
+        <img src="./img/gaugebg.png" alt="gaugebg">
+        <div class="barclip">
+          <div class="rpmbar"></div>
+        </div>
+        <div class="bgcolor"></div>
+      </div>
+
+      <div id="right-gauge" class="circle">
+        <div class="numbers" id="kmhnumbers"></div>
+        <div class="bignumber" id="speedo">0</div>
+        <img src="./img/gaugebg.png" alt="gaugebg">
+        <div class="barclip">
+          <div class="kmhbar"></div>
+        </div>
+        <div class="bgcolor"></div>
+      </div>
+    </div>
+
+    <div id="centerLeftWidget">
+      <div class="micro-gauges">
+        <div class="micro-gauge">
+          <div>BATT</div>
+          <span id="battLevel">0</span>
+          <p>VOLTS</p>
+        </div>
+        <div class="micro-gauge">
+          <div>FUEL</div>
+          <span id="fuelPressure">0</span>
+          <p>BAR</p>
+        </div>
+        <div class="micro-gauge">
+          <div>LAMBDA</div>
+          <span id="lambda">0</span>
+          <p>LAMBDA</p>
+        </div>
+        <div class="micro-gauge">
+          <div>BOOST</div>
+          <span id="mapBoost">0</span>
+          <p>BAR</p>
+        </div>
+        <div class="micro-gauge">
+          <div>OIL</div>
+          <span id="oilPressure">0</span>
+          <p>BAR</p>
+        </div>
+        <div class="micro-gauge">
+          <div>MAT</div>
+          <span id="mat">0</span>
+          <p>°C</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="navcursor">
+      <svg width="125px" height="53px" viewBox="0 0 12528 5306">
+        <polygon class="mainColorFill" points="6264,4207 12528,5306 6264,0 0,5306 "/>
+        <polygon class="fil1" points="6264,4207 12528,5306 6264,2873 "/>
+        <polygon class="fil2" points="6264,2873 0,5306 6264,0 "/>
+        <polygon class="fil3" points="6264,2873 12528,5306 6264,0 "/>
+        <polygon class="fil4" points="6264,4207 0,5306 6264,2873 "/>
+      </svg>
+    </div>
+
+    <div id="bottom-odo">
+      <div class="left">
+        <div>TRIP<span id="kmTrip">0</span>km</div>
+      </div>
+      <div class="right">
+        <div>TOTAL<span id="kmTotal">0</span>km</div>
+      </div>
+    </div>
+
+    <div id="bottomanimation"></div>
+  </div>
+
+  <script src="../../assets/defaultSettings.js" type="text/javascript"></script>
+  <script src="../../assets/client.js" type="text/javascript"></script>
+  <script src="./script.js" type="text/javascript"></script>
+</body>
+</html>
