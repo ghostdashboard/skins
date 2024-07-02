@@ -1,0 +1,592 @@
+@font-face {
+  font-family: 'Digital';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+:root {
+  --oil-bar: 0px;
+  --batt-bar: 0px;
+  --water-bar: 0px;
+  --comb-bar: 0px;
+  --rpm: -8deg;
+}
+
+body,html {
+  height:100%;
+  width:100%;
+  overflow:hidden;
+}
+
+body {
+  background-color: #000;
+  color: #999;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  position: relative;
+  z-index: 10;
+  height: auto;
+  width: 100px;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+path.dial, svg > text {
+  display: none;
+}
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  left: 0px;
+  border: none;
+  overflow:hidden;
+  max-height: 500px;
+  position: relative;
+  padding: 0;
+  box-sizing: border-box;
+  opacity: 0;
+  background-color: #000;
+  transform-origin: center center;
+}
+
+#container .block {
+  height: 100%;
+  width: 312px;
+  display: block;
+  position: absolute;
+  left: 32px;
+  top: 32px;
+}
+
+#container .block:nth-child(3) {
+  left: auto;
+  right: 32px;
+}
+
+#container .block.center-block {
+  width: 407px;
+  left: calc(50% - 203px);
+  text-align: center;
+}
+
+.block.center-block > img {
+  height: 47px;
+  width: 54px;
+  align-self: center;
+  margin: 0 auto 10px auto;
+}
+
+.block .gaugeHolder {
+  width: 100%;
+  height: 60px;
+  background-color: #1F1F1F;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+  display: block;
+}
+
+.block .gaugeHolder:after,
+.block .bigCenterGauge:before {
+  content: "";
+  background-color: #111;
+  position:absolute;
+  bottom: 8px;
+  right: 0;
+  left: 8px;
+  top: 0;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.bigCenterGauge .vssDigits {
+  font-family: 'Digital';
+  font-weight: 400;
+  position: absolute;
+  color: #FFEF82;
+  z-index: 12;
+  font-size: 148px;
+  transform: skew(-6deg) scale(1.15, 1);
+  margin: 20px 0 0 33px;
+  text-align: right;
+  width: 282px;
+  opacity: 0;
+  letter-spacing: 6px;
+}
+
+.block:nth-child(3) .gaugeHolder:after {
+  right: 8px;
+  left: 0;
+}
+
+.block.center-block .gaugeHolder:after {
+  right: 8px;
+  left: 8px;
+  bottom: unset;
+  width: unset;
+  height: 165px;
+  z-index: 0;
+}
+
+.block .bigGauge,
+.block .bigCenterGauge {
+  height: 302px;
+  margin-bottom: 50px;
+}
+
+.block .bigCenterGauge {
+  justify-content: space-between;
+  -direction: column;
+}
+
+.bigCenterGauge .vssBg {
+  width: 307px;
+  height: 118px;
+  margin: 30px 0 0 50px;
+  opacity: 0;
+}
+
+.bigCenterGauge .letters {
+  width: 209px;
+  height: 14px;
+  margin-top: 45px;
+}
+
+.bigCenterGauge .odoHolder {
+  margin: 20px auto 0 auto;
+  width: calc(100% - 40px);
+  position: relative;
+}
+
+.odoHolder .odoLeft {
+  width: 170px;
+  height: 40px;
+  left: 0;
+  margin-right: 38px;
+}
+
+.odoHolder .odoRight {
+  width: 153px;
+  height: 40px;
+}
+
+.odoHolder .odoLeftDigits,
+.odoHolder .odoRightDigits {
+  font-family: 'Digital', sans-serif;
+  position: absolute;
+  color: #ada682;
+  z-index: 12;
+  font-size: 32px;
+  letter-spacing: 8px;
+  margin: 6px 0 0 6px;
+  opacity: 0;
+  top: 3px;
+  height: 30px;
+  width: 152px;
+  text-align: right;
+  overflow: hidden;
+  transform: scaleX(1.2);
+}
+
+.odoHolder .odoLeftDigits {
+  left: 0;
+  margin: 0 0 0 3px;
+}
+.odoHolder .odoRightDigits {
+  right: 0;
+  margin: 0;
+  letter-spacing: 19px;
+}
+
+.odoHolder .odoRightDigits b {
+  font-weight: normal;
+  color: #000;
+}
+
+.bigGauge .rpmMask {
+  width: 272px;
+  height: 263px;
+  margin: 20px 16px 10px 15px;
+  z-index: 14;
+  position: relative;
+}
+
+.bigGauge .rpmGauge {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  width: 272px;
+  height: 263px;
+  z-index: 12;
+  overflow: hidden;
+  background: #252900;
+  opacity: 0;
+}
+
+.bigGauge .rpmGauge #rpm {
+  content: "";
+  height: 500px;
+  width: 500px;
+  background: #feee81;
+  position: absolute;
+  right: 30px;
+  top: 236px;
+  transform-origin: top right;
+  transform: rotate(var(--rpm)) skew(40deg, 0deg);
+  opacity: 0;
+}
+
+.bigGauge .rpmGauge .value {
+  stroke-width: 6.5px;
+  stroke-dasharray: 1.5, 0.4;
+}
+
+.block:nth-child(1) .bigGauge {
+  padding: 0 0 10px 10px;
+  box-sizing: border-box;
+}
+
+.bigGauge .leftGauge {
+  display: block;
+  height: 60px;
+  background-color: #252900;
+  width: 100%;
+  border-radius: 8px;
+  z-index: 10;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  margin: 4px 0 16px 0;
+}
+
+.bigGauge .leftGauge > * {
+  opacity: 0;
+}
+
+.bigGauge .leftGauge:before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 70px;
+  background-color: #181b00;
+}
+
+.bigGauge .leftGauge > svg {
+  height: 60px;
+  width: auto;
+  z-index: 10;
+}
+
+svg .gaugeIndicator {
+  fill: #cc2900;
+}
+
+.combLevelGauge svg .gaugeIndicator {
+  fill: #E6851C;
+}
+
+.bigGauge .leftGauge > img {
+  height: auto;
+  position: absolute;
+  margin-left: 7px;
+}
+
+.bigGauge .leftGauge.oilPressureGauge > img {
+  width: 179px;
+  margin-left: 53px;
+  margin-top: 1px;
+}
+
+.bigGauge .leftGauge.battLevelGauge > img {
+  width: 207px;
+  margin-top: 8px
+}
+
+.bigGauge .leftGauge.waterTempGauge > img {
+  width: 215px;
+  margin-left: 8px;
+}
+
+.bigGauge .leftGauge.combLevelGauge > img {
+  width: 225px;
+  margin-top: 4px;
+}
+
+.bigGauge .leftGauge .gaugeBar {
+  position: absolute;
+  width: 100%;
+  height: 49px;
+  bottom: 0;
+  left: 73px;
+  background-size: 225px auto;
+  background-repeat: no-repeat;
+  background-position: left top;
+  transform: translate3d(0px, 0px, 0px);
+  clip: rect(0px 0px 60px 0px);
+  opacity: 1;
+}
+
+.bigGauge .leftGauge .icon {
+  height: 30px;
+  width: 40px;
+  position: absolute;
+  top: 18px;
+  left: 13px;
+  margin: 0;
+  text-align: center;
+}
+
+.bigGauge .leftGauge .icon > img {
+  height: 24px;
+  width: auto;
+  max-width: 30px;
+}
+
+
+.bigGauge .leftGauge.battLevelGauge > .gaugeBar {
+  height: 43px;
+}
+
+.bigGauge .leftGauge.waterTempGauge > .gaugeBar {
+  height: 59px;
+  background-size: 226px auto;
+}
+
+.bigGauge .leftGauge.combLevelGauge > .gaugeBar {
+  height: 46px;
+}
+
+#container.connected .bigGauge .leftGauge.oilPressureGauge > .gaugeBar {
+  clip: rect(0px var(--oil-bar) 60px 0px);
+  animation: none;
+}
+
+#container.connected .bigGauge .leftGauge.battLevelGauge > .gaugeBar {
+  clip: rect(0px var(--batt-bar) 60px 0px);
+  animation: none;
+}
+
+#container.connected .bigGauge .leftGauge.waterTempGauge > .gaugeBar {
+  clip: rect(0px var(--water-bar) 60px 0px);
+  animation: none;
+}
+
+#container.connected .bigGauge .leftGauge.combLevelGauge > .gaugeBar {
+  clip: rect(0px var(--comb-bar) 60px 0px);
+  animation: none;
+}
+
+#container.connected:not(.anim-out) .bigGauge .rpmGauge #rpm {
+  animation: none;
+  transform: rotate(var(--rpm)) skew(40deg, 0deg);
+  opacity: 1;
+}
+
+.block .bigCenterGauge:before {
+  content: "";
+  z-index: 0;
+  right: 8px;
+  left: 8px;
+  background-color: #1A1A1A;
+}
+
+.gaugeHolder .footerGauge {
+  height: 26px;
+  border-radius: 2px;
+  z-index: 10;
+  margin-left: 8px;
+  padding: 13px 0;
+  display: inline-block;
+  text-align: center;
+  opacity: 0;
+  width: 49px;
+  position: relative;
+}
+
+.gaugeHolder .footerGauge {
+  transition: opacity 0.3s;
+}
+
+.gaugeHolder .footerGauge img,
+.gaugeHolder .footerGauge svg path {
+  transition: fill 0.3s;
+}
+
+[data-etoggle="1"].footerGauge.blueBlock .bottomIcon,
+[data-etoggle="1"].footerGauge.greenBlock .bottomIcon,
+[data-etoggle="1"].footerGauge.redBlock .bottomIcon {
+  fill: #000;
+  opacity: 0.7;
+}
+
+[data-etoggle="1"].footerGauge.blueBlock {
+  background-color: #0066ff;
+  box-shadow: 0 0 20px #0066ff;
+}
+
+[data-etoggle="1"].footerGauge.greenBlock {
+  background-color: #55a200;
+  box-shadow: 0 0 20px #55a200;
+}
+
+[data-etoggle="1"].footerGauge.redBlock {
+  background-color: #bf2701;
+  box-shadow: 0 0 20px #bf2701;
+}
+
+[data-etoggle="1"].footerGauge {
+  opacity: 1 !important;
+}
+
+.block:nth-child(1) .gaugeHolder .footerGauge:first-child {
+  /* margin-left: 18px; */
+  border-radius: 8px 2px 2px 8px;
+}
+
+.gaugeHolder .footerGauge img,
+.gaugeHolder .footerGauge svg {
+  width: auto;
+  height: 26px;
+  max-width: 30px;
+  margin: auto;
+}
+
+.gaugeHolder .footerGauge .bottomIcon {
+  fill: #FFF;
+}
+
+.block:nth-child(3) .gaugeHolder .footerGauge {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.block:nth-child(3) .gaugeHolder .footerGauge:last-child {
+  margin-right: 8px;
+  border-radius: 2px 8px 8px 2px;
+}
+
+#highBeam,
+#turnLeft,
+#turnRight,
+#eBrake {
+  opacity: 0.15;
+}
+
+.bottomLine {
+  position: absolute;
+  height: 4px;
+  left: 0;
+  right: 0;
+  top: 360px;
+  background: #111;
+  border-top: solid #1F1F1F 2px;
+}
+
+@media only screen and (max-width: 1160px) {
+
+}
+
+.useGpu {
+  will-change: transform, opacity;
+}
+
+#container.anim-in {
+  animation: fade-in-center 2s ease 1 forwards;
+}
+
+#container.anim-step2 .bigGauge .leftGauge,
+#container.anim-step2 .bigCenterGauge .vssBg,
+#container.anim-step2 .bigGauge .rpmGauge {
+  animation: fade-in 0.5s ease 1 forwards;
+}
+
+#container.anim-step3 .bigCenterGauge .vssDigits,
+#container.anim-step3 .odoHolder .odoLeftDigits,
+#container.anim-step3 .odoHolder .odoRightDigits,
+#container.anim-step3 .bigGauge .leftGauge > * {
+  animation: fade-in 0.5s ease 1 forwards;
+}
+
+#container.anim-step3 .bigGauge .leftGauge .gaugeBar {
+  animation: grow-in 3.5s linear 1 forwards;
+}
+
+.anim-step3 .bigGauge .rpmGauge #rpm {
+  animation: rotate 3.5s linear 1 forwards;
+}
+
+@keyframes fade-in-center {
+  1%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-in {
+  1%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  1%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes grow-in {
+  1%   { clip: rect(0px 0px 60px 0px) }
+  70% { clip: rect(0px 225px 60px 0px) }
+  99% { clip: rect(0px 225px 60px 0px) }
+  100% { clip: rect(0px 0px 60px 0px) }
+}
+
+@keyframes rotate {
+  1% { transform: rotate(-8deg) skew(40deg, 0deg); opacity: 1; }
+  70% { transform: rotate(98deg) skew(40deg, 0deg); opacity: 1; }
+  99% { transform: rotate(98deg) skew(40deg, 0deg); opacity: 1; }
+  100% { transform: rotate(-8deg) skew(40deg, 0deg); opacity: 1; }
+}
+
+#container.anim-out,
+#container.anim-out .bigGauge .rpmMask,
+#container.anim-out .bigGauge .leftGauge,
+#container.anim-out .bigCenterGauge .vssBg,
+#container.anim-out .bigGauge .rpmGauge,
+#container.anim-out .bigCenterGauge .vssDigits,
+#container.anim-out .odoHolder .odoLeftDigits,
+#container.anim-out .odoHolder .odoRightDigits,
+#container.anim-out .bigGauge .leftGauge,
+#container.anim-out .bigGauge .leftGauge .gaugeBar {
+  opacity: 1;
+  animation: fade-out 0.5s linear 1 forwards;
+}
+
+#container.anim-out {
+  animation-delay: 3s
+}
+
+#container.anim-out .bigGauge .rpmMask,
+#container.anim-out .bigGauge .leftGauge,
+#container.anim-out .bigCenterGauge .vssBg,
+#container.anim-out .bigGauge .rpmGauge {
+  animation-delay: 2s
+}
+
+#container.anim-out .bigCenterGauge .vssDigits,
+#container.anim-out .odoHolder .odoLeftDigits,
+#container.anim-out .odoHolder .odoRightDigits,
+#container.anim-out .bigGauge .leftGauge > * {
+  animation-delay: 1s
+}
+
+#container.anim-out #rpm {
+  opacity: 0;
+  animation: none;
+}

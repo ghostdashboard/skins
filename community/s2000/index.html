@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Dashboard</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container">
+
+    <div id="rpm">
+      <div id="shape">
+        <div id="needle"></div>
+        <img src="img/rpm-stripes.svg" alt="RPM" />
+      </div>
+      <img src="img/rpm-mask.svg" alt="RPM" id="rpm-mask" />
+    </div>
+
+    <div id="tach">
+      <div id="tachNum"></div>
+      <div id="tachMini">
+        <div id="batt">0</div>
+        <div id="mat">0</div>
+        <div id="tps">0</div>
+      </div>
+      <div id="tachTrip">
+        <div id="kmtrip">0</div>
+        <div id="kmtotal">0</div>
+      </div>
+      <div id="tachBoost">
+        <div id="boost">0.00</div>
+      </div>
+      <img src="img/tach-mask.svg" alt="tach" id="tach-mask" />
+    </div>
+
+    <div id="turnIcons">
+      <img src="img/turn.svg" alt="turn-left" id="turnL" />
+      <img src="img/turn.svg" alt="turn-right" id="turnR" />
+    </div>
+
+    <div id="hBeamIcon">
+      <img src="img/hbeam.svg" alt="hbeam" id="hBeam" />
+    </div>
+
+    <div id="clt">
+      <div id="cltArc"></div>
+      <img src="img/clt-gauge.svg" alt="clt" id="clt-gauge" />
+    </div>
+
+    <div id="fuel">
+      <div id="fuelArc"></div>
+      <img src="img/fuel-gauge.svg" alt="fuel" id="fuel-gauge" />
+    </div>
+
+    <div id="bottom">
+      <div id="bottomIconsLeft">
+        <img src="img/brake.svg" alt="brake" id="brake" />
+        <img src="../../assets/icons_color/battery.svg" alt="battery" id="battery" />
+        <img src="../../assets/icons_color/oil.svg" alt="oil" id="oil" />
+        <img src="../../assets/icons_color/injection.svg" alt="injection" id="injection" />
+      </div>
+      <div id="bottomIconsRight">
+        <img src="../../assets/icons_color/headlight.svg" alt="headlight" id="headlight" />
+        <img src="../../assets/icons_color/fan.svg" alt="fan" id="fan" />
+        <img src="../../assets/icons_color/door.svg" alt="door" id="door" />
+        <img src="../../assets/icons_color/pump.svg" alt="pump" id="pump" />
+      </div>
+      <img src="img/bottom.png" alt="bottom" id="bottom-mask" />
+    </div>
+
+  </div>
+
+
+  <script src="../../assets/defaultSettings.js" type="text/javascript"></script>
+  <script src="../../assets/client.js" type="text/javascript"></script>
+  <script src="../../assets/svgGauges.js" type="text/javascript"></script>
+  <script src="script.js?v1.1" type="text/javascript"></script>
+</body>
+</html>

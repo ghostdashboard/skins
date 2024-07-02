@@ -1,0 +1,453 @@
+@font-face {
+  font-family: 'Digital';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'CPMono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('CPMono Plain'), local('CPMono-Plain'), url('../../assets/fonts/CPMono-Plain.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rubik Regular'), local('Rubik-Regular'), url('../../assets/fonts/Rubik-Regular.ttf') format('truetype');
+}
+
+
+:root {
+  --main-color: #FFA700;
+  --rpm: 8deg;
+  --rpm-color: var(--main-color);
+  --icon-default-opacity: 0.1;
+}
+
+
+body,html {
+  height:100%;
+  width:100%;
+  overflow:hidden;
+}
+
+body {
+  background-color: #000;
+  color: #999;
+  font-family: 'Rubik', sans-serif;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  border: none;
+  overflow:hidden;
+  max-height: 500px;
+  position: relative;
+  display: block;
+  top: 0;
+  opacity: 0.01;
+  transform-origin: center center;
+}
+
+#rpm {
+  width:825px;
+  height: 342px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+#rpm #shape {
+  width:825px;
+  height: 342px;
+  clip-path: polygon(825px 24px, 798px 86px, 798px 86px, 765.136px 78.328px, 731.408px 72.144px, 696.912px 67.496px, 661.744px 64.432px, 626px 63px, 626px 63px, 609px 63px, 592px 63px, 575px 64px, 549px 66px, 63.77% 19.93%, 500px 72px, 56.97% 22.75%, 434px 86px, 390px 99px, 334px 120px, 285px 143px, 237.375px 169.125px, 194.368px 198.72px, 155.069px 231.075px, 119.736px 265.92px, 88.627px 302.985px, 62px 342px, 0px 342px, 0px 342px, 27.883px 295.827px, 60.944px 251.736px, 98.901px 210.069px, 141.472px 171.168px, 188.375px 135.375px, 239.328px 103.032px, 294.049px 74.481px, 352.256px 50.064px, 413.667px 30.123px, 447px 22px, 478px 15px, 508.592px 9.6px, 537px 5px, 69.10% 0.55%, 72.61% 0.08%, 74.43% 0.04%, 630px 1.84889e-31px, 630px 0px, 80.73% 0.03%, 700px 2px, 726.152px 4.288px, 751.056px 7.584px, 775.384px 11.936px, 799.808px 17.392px, 825px 24px);
+  background-color: #39250c;
+}
+
+#rpm #shape #needle {
+  display: block;
+  position: absolute;
+  top: 412px;
+  left: -401px;
+  width: 1000px;
+  height: 5000px;
+  background-color: var(--rpm-color);
+  transform-origin: 920px 100px;
+  transform: rotate(7deg);
+  z-index: 1;
+}
+
+#rpm #shape img {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  position: absolute;
+}
+
+#rpm #rpm-mask {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 760px;
+  height: 341px;
+}
+
+#clt, #fuel {
+  width: 268px;
+  height: 116px;
+  position: absolute;
+}
+
+#clt {
+  top: 114px;
+  right: 140px;
+}
+
+#cltArc, #fuelArc {
+  position: absolute;
+  width: 268px;
+  height: 112px;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+#cltArc > .gauge > .dial,
+#fuelArc > .gauge > .dial {
+  stroke: none;
+  stroke-width: 0;
+  fill: none;
+}
+
+#cltArc > .gauge > .value,
+#fuelArc > .gauge > .value {
+  stroke: var(--main-color);
+  stroke-width: 12px;
+  fill: none;
+  stroke-dasharray: 3 0.9;
+}
+
+#cltArc > svg,
+#fuelArc > svg {
+  transform: scale(1.07, 0.95) translateY(-9px);
+  transform-origin: center top;
+}
+
+#clt-gauge {
+  display: block;
+  margin: 0 0 0 2px;
+}
+
+#fuel {
+  top: 246px;
+  right: 20px;
+}
+
+#fuel-gauge {
+  display: block;
+  margin: 0 0 0 1px;
+}
+
+#bottom-mask {
+  margin: 0 15px;
+}
+
+#tach {
+  top: 154px;
+  position: absolute;
+  width: 39%;
+  left: 28%;
+  font-family: 'Digital';
+  color: var(--main-color);
+}
+
+#tachNum {
+  display: block;
+  font-weight: 400;
+  position: absolute;
+  z-index: 12;
+  font-size: 162px;
+  margin: 0;
+  text-align: right;
+  width: 258px;
+  line-height: 120px;
+  top: 9px;
+  right: 107px;
+  transform: scaleX(1.2);
+}
+
+#tach-mask {
+  display: block;
+  position: relative;
+  width: 502px;
+  height: 208px;
+}
+
+#tachMini, #tachTrip, #tachBoost {
+  position: absolute;
+  height: 35px;
+  bottom: 37px;
+  z-index: 10;
+  overflow: hidden;
+  font-size: 32px;
+  letter-spacing: 4px;
+  text-align: right;
+  left: 116px;
+  padding: 0 4px 0 0;
+  opacity: 0.01;
+}
+
+#tachMini > div {
+  display: inline-block;
+  width: 105px;
+  position: relative;
+  margin: 0 28px 0 0;
+}
+
+#tachMini > div::before {
+  content: "BAT";
+  font-family: 'Rubik';
+  letter-spacing: 0;
+  font-size: 17px;
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  border-bottom: 2px solid var(--main-color);
+  height: 24px;
+}
+
+#tachMini > div:last-child {
+  margin: 0;
+}
+
+#tachMini #mat::before {
+  content: "IAT"
+}
+
+#tachMini #tps::before {
+  content: "TPS"
+}
+
+#tachTrip {
+  bottom: 0;
+  width: 74%;
+}
+
+#tachBoost {
+  left: 5px;
+  height: 71px;
+  bottom: 0;
+}
+
+#tachBoost > div {
+  display: inline-block;
+  width: 88px;
+  position: relative;
+  /*! letter-spacing: -8px; */
+}
+
+#tachBoost > div::before {
+  content: "BOOST";
+  font-family: 'Rubik';
+  letter-spacing: 0;
+  font-size: 17px;
+  display: block;
+  border-bottom: 2px solid var(--main-color);
+  height: 24px;
+  text-align: left;
+  width: 56px;
+  margin: 0 0 10px 0;
+}
+
+#kmtrip, #kmtotal {
+  width: 46%;
+  display: inline-block;
+  float: left;
+}
+
+#kmtotal {
+  margin: 0 0 0 28px;
+  position: relative;
+}
+
+#kmtotal::before {
+  content: "TRIP \A A";
+  font-family: 'Rubik';
+  letter-spacing: 0;
+  font-size: 16px;
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  white-space: pre;
+  text-align: left;
+  line-height: 14px;
+}
+
+#turnIcons {
+  position: absolute;
+  top: 164px;
+  left: 34%;
+  width: 32.5%;
+}
+
+#turnIcons > img {
+  width: 38px;
+  height: 42px;
+  float: left;
+  position: relative;
+  opacity: var(--icon-default-opacity);
+}
+
+#turnIcons > img:last-child {
+  float: right;
+  transform: scaleX(-1);
+}
+
+#hBeamIcon {
+  position: absolute;
+  top: 320px;
+  left: 900px;
+  width: 45px;
+  height: 32px;
+}
+
+#hBeamIcon > img {
+  width: 45px;
+  height: 32px;
+  opacity: var(--icon-default-opacity);
+}
+
+#bottom {
+  position: absolute;
+  width: 1280px;
+  height: 106px;
+  bottom: 0;
+  opacity: 0.01;
+}
+
+#bottomIconsLeft, #bottomIconsRight {
+  position: absolute;
+  top: 23px;
+  left: 260px;
+  width: 800px;
+  height: 28px;
+}
+
+#bottomIconsRight {
+  left: inherit;
+  right: 150px;
+  width: 220px;
+}
+
+#bottomIconsLeft > img,
+#bottomIconsRight > img {
+  max-width: 46px;
+  height: 28px;
+  float: left;
+  position: relative;
+  margin: 0 12px;
+  opacity: var(--icon-default-opacity);
+}
+
+#battery {
+  width: 34px;
+}
+
+#headlight {
+  width: 40px;
+}
+
+
+/* FUNCTIONS */
+
+#container.connected #rpm #shape #needle {
+  animation: none;
+  opacity: 1;
+  transform: rotate(var(--rpm));
+}
+
+img[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+
+/* ANIMATIONS */
+
+#container,
+#rpm #shape #needle {
+  will-change: transform, opacity;
+}
+
+.anim-in #rpm #shape #needle {
+  animation-name: rotate;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  animation-delay: 2s;
+}
+
+.anim-in #tachMini,
+.anim-in #tachTrip,
+.anim-in #tachBoost {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-delay: 4.5s;
+}
+
+.anim-in #bottom {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-delay: 5s;
+}
+
+#container.anim-in {
+  animation-name: fade-in;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 1.5s;
+}
+
+#container.anim-out {
+  opacity: 1;
+  animation-name: anim-out;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 2s;
+}
+
+@keyframes rotate {
+  1% { transform: rotate(7deg); }
+  40% { transform: rotate(112deg); }
+  60% { transform: rotate(112deg); }
+  100% { transform: rotate(7deg); }
+}
+
+@keyframes fade-in {
+  1%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes anim-out {
+  1%   { transform: scale(1); }
+  50% { transform: scale(0.7) translate(0, 0); }
+  100% { transform: scale(0.7) translate(0, -1000px); }
+}

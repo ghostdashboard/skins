@@ -15,7 +15,6 @@ const callback = () => {
   const { cMain, cSec, cRed } = COLORS
   const { aSpd, redline, icon } = DASH_OPTIONS
   const maxRPM = 8000;
-  let [useCAN, useCANForRPM, useCANForVSS, useCANForCLT] = [false, false, false, false]
 
   // Set static parameters
   setRootCSS('--background-color', cMain);
@@ -39,14 +38,6 @@ const callback = () => {
     if (checkCache('kmh-deg', val) || val > 160) return
     setRootCSS('--kmh-deg', `${(155 + ((val/160)*230))}deg`)
   }
-
-  // Cache the settings for channel sources locally
-  const checkSource = () => [useCAN, useCANForRPM, useCANForVSS, useCANForCLT] = [
-      useCanChannel(),
-      useCanChannel('sRpm'),
-      useCanChannel('sVss'),
-      useCanChannel('sClt'),
-    ]
 
   // Bind the realtime data to the DOM
   const bindRealtimeData = () => {

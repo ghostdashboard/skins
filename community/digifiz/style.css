@@ -1,0 +1,501 @@
+@font-face {
+  font-family: "Digital";
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "DigitalAlpha";
+  font-style: normal;
+  font-weight: normal;
+  src: url('../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "CPMono";
+  font-style: normal;
+  font-weight: 400;
+  src: local('ChivoMono Light'), local('ChivoMono-Light'), url('../../assets/fonts/ChivoMono-Light.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Rubik Regular"), local("Rubik-Regular"),
+    url("../../assets/fonts/Rubik-Regular.ttf") format("truetype");
+}
+
+:root {
+  --main-color: #EBD62F;
+  --rpm: 0px;
+  --lcd-bg-color: #1b2908;
+  --pBoost-gauge-bar: 0%;
+  --clt-gauge-bar: 0%;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #000;
+  color: #999;
+  font-family: "Rubik", sans-serif;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  border: none;
+  overflow: hidden;
+  max-height: 500px;
+  position: relative;
+  display: block;
+  top: 0;
+  opacity: 0.01;
+  transform-origin: center center;
+}
+
+#rpm {
+  width: 825px;
+  height: 342px;
+  position: absolute;
+  top: 10px;
+  left: 90px;
+}
+
+#rpm #shape {
+  width: 772px;
+  height: 256px;
+  clip-path: polygon(
+    772px 32px,
+    772px 0px,
+    676px 0px,
+    621px 1px,
+    566px 2px,
+    548px 3px,
+    526px 4px,
+    502px 6px,
+    487px 8px,
+    473px 10px,
+    460px 12px,
+    446px 15px,
+    433px 18px,
+    419px 21px,
+    405px 25px,
+    390px 30px,
+    375px 35px,
+    358px 41px,
+    341px 47px,
+    319px 55px,
+    297px 64px,
+    276px 74px,
+    254px 84px,
+    232px 95px,
+    211px 106px,
+    189px 117px,
+    168px 129px,
+    146px 140px,
+    20px 213px,
+    0px 225px,
+    0px 256px,
+    73px 213px,
+    147px 172px,
+    184px 151px,
+    222px 131px,
+    280px 103px,
+    294px 97px,
+    321px 86px,
+    345px 77px,
+    379px 65px,
+    389px 62px,
+    410px 56px,
+    420px 53px,
+    439px 48px,
+    449px 46px,
+    459px 44px,
+    478px 41px,
+    498px 38px,
+    508px 37px,
+    518px 36px,
+    551px 34px,
+    574px 33px,
+    627px 32px,
+    641px 32px,
+    676px 32px,
+    772px 32px
+  );
+  background-color: var(--lcd-bg-color);
+}
+
+#rpm #shape #redline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 780px;
+  height: 260px;
+  background-color: var(--lcd-bg-color);
+  z-index: 2;
+}
+
+#rpm #shape img {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+  width: 768px;
+  height: 260px;
+}
+
+#rpm #rpm-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 778px;
+  height: 272px;
+}
+
+#clt,
+#boost {
+  width: 92px;
+  height: 218px;
+  position: absolute;
+  top: 52px;
+}
+
+#clt {
+  right: 34px;
+}
+
+#cltBar,
+#boostBar {
+  position: absolute;
+  width: 32px;
+  height: 218px;
+  overflow: hidden;
+  top: 0;
+  right: 12px;
+  background-color: var(--lcd-bg-color);
+  z-index: 1;
+}
+
+#clt > img,
+#boost > img {
+  float: right;
+  position: relative;
+  z-index: 2;
+}
+
+#boost {
+  right: 160px;
+}
+
+#cltBar .valueBar,
+#boostBar .valueBar {
+  z-index: 2;
+  position: absolute;
+  height: 220px;
+  width: 34px;
+  background-color: var(--lcd-bg-color);
+}
+
+#cltBar img,
+#boostBar img {
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 274px;
+  right: 0;
+  transform-origin: right bottom;
+  width: 780px;
+  height: 40px;
+  z-index: 1;
+}
+
+#boostBar img {
+  bottom: 304px;
+}
+
+#cltBar .valueBar {
+  transform: translateY(-3px);
+}
+
+#boostBar .valueBar {
+  transform: translateY(-3px);
+}
+
+#iconsLine {
+  height: 76px;
+}
+
+#iconsLine svg {
+  shape-rendering: auto;
+  text-rendering: optimizeSpeed;
+  image-rendering: optimizeSpeed;
+  fill-rule: evenodd;
+}
+
+#iconsLine svg g,
+#iconsLine svg .disabled {
+  opacity: 0.15
+}
+
+g[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+.str0 {
+  stroke: #999;
+  stroke-width: 199.961;
+}
+.fil7 {
+  fill: none;
+}
+.fil8 {
+  fill: #007bff;
+}
+.fil0 {
+  fill: #64a621;
+}
+.fil3 {
+  fill: #cf8804;
+}
+.fil4 {
+  fill: #cf8804;
+}
+.fil6 {
+  fill: #d23e35;
+}
+.fil9 {
+  fill: #e7ffcc;
+}
+.fil1 {
+  fill: #fbff00;
+}
+.fil2 {
+  fill: #fbff00;
+}
+
+#bottom-mask {
+  margin: 0 28px;
+  width: 1222px;
+  height: 103px;
+}
+
+#tach {
+  top: 138px;
+  position: absolute;
+  width: 34%;
+  left: 41%;
+  font-family: 'Digital';
+  color: var(--main-color);
+}
+
+#tachNum {
+  display: block;
+  position: absolute;
+  z-index: 12;
+  font-size: 172px;
+  margin: 9px 0 0 0px;
+  text-align: right;
+  line-height: 132px;
+  top: 0;
+  transform: scaleX(1.2) skew(3deg);
+  right: 150px;
+  width: 306px;
+  opacity: 0.01;
+}
+
+#bottom {
+  position: absolute;
+  width: 1280px;
+  height: 186px;
+  bottom: 0;
+}
+
+#infoLine {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  height: 60px;
+  font-family: 'DigitalAlpha';
+  font-size: 72px;
+  color: var(--main-color);
+  opacity: 0.01;
+}
+
+#infoLine > div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scaleX(1.3);
+  transform-origin: left top;
+  text-align: right;
+  overflow: hidden;
+}
+
+#kmTotal {
+  left: 20px;
+  font-size: 60px;
+  width: 194px;
+}
+
+#lambda {
+  left: 426px;
+  width: 135px;
+  letter-spacing: 4px;
+}
+
+#kmTrip {
+  left: 723px;
+  width: 198px;
+}
+
+#fuelLevel {
+  left: 1033px;
+  width: 80px;
+}
+
+#gear {
+  left: 1196px;
+  color: #d41d13;
+  width: 38px;
+}
+
+
+
+/* FUNCTIONS */
+
+#container.connected #rpm #shape #redline {
+  animation: none;
+  opacity: 1;
+  transform: translateX(var(--rpm));
+}
+
+#container.connected #cltBar .valueBar {
+  animation: none;
+  opacity: 1;
+  transform: translateY(var(--clt-gauge-bar));
+}
+
+#container.connected #boostBar .valueBar {
+  animation: none;
+  opacity: 1;
+  transform: translateY(var(--pBoost-gauge-bar));
+}
+
+img[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+/* ANIMATIONS */
+
+#container,
+#rpm #shape #redline {
+  will-change: transform;
+}
+
+.anim-in #rpm #shape #redline {
+  animation-name: rpm;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  animation-delay: 1.5s;
+}
+
+.anim-in #cltBar .valueBar,
+.anim-in #boostBar .valueBar {
+  animation-name: gauges;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+  animation-delay: 1.5s;
+}
+
+.anim-in #tachNum,
+.anim-in #infoLine {
+  animation-name: fade-in;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+}
+
+#container.anim-in {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+}
+
+#container.anim-out {
+  opacity: 1;
+  animation-name: anim-out;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: 3s;
+}
+
+@keyframes rpm {
+  1% {
+    transform: translateX(0px);
+  }
+  33% {
+    transform: translateX(770px);
+  }
+  66% {
+    transform: translateX(770px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes gauges {
+  1% {
+    transform: translateY(0px);
+  }
+  33% {
+    transform: translateY(-220px);
+  }
+  66% {
+    transform: translateY(-220px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes fade-in {
+  1% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes anim-out {
+  1% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7) translate(0, 0);
+  }
+  100% {
+    transform: scale(0.7) translate(0, -1000px);
+  }
+}

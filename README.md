@@ -113,14 +113,12 @@ To reset the saved skin, you can use the `Reset settings` button in the control 
 > [!NOTE]
 > To debug Javascript and network errors, use the browser's developer tools console (F12).
 
-### ⚪ Emulate hardware connection
-To emulate a hardware connection, you can use the `Server connection` toggle in the control panel.<br>
+### ⚪ Emulate Server connection
+To emulate a hardware connection, you can use the `Toggle Server connection` button in the control panel.<br>
 This will toggle the `connected` class on the `container` element, which you can use to style and animate your skin accordingly.<br>
 Use this flag to set your skin in a "connected" state, meaning the UI successfully connects to the hardware.
 
-### ⚪ Emulate Real-time data
-You can use the `Real-time data` toggle in the control panel to emulate hardware data.<br>
-This will trigger a simulated data stream that you can use to test your skin's UI.<br>
+This will also trigger a simulated data stream that you can use to test your skin's UI.<br>
 Make sure to test your skin thoroughly with different combinations of settings, since they can change the behaviour of the UI.
 
 ### ⚪ Emulate animations
@@ -522,6 +520,21 @@ const useCANForRPM = useCanChannel('sRpm');  // 'sRpm' = Source RPM in User Sett
 // ...
 const bindRealtimeData = () => {
   updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'RPM'))
+}
+```
+<br>
+
+### `checkSource(): void`
+Shortcut method to check if the CAN source is still available and update the most common channels based on the user's settings - RPM, VSS and CLT.
+
+This method is a wrapper around `useCanChannel` and should be called inside your `bindRealtimeData` method. It will update the `useCANForRPM`, `useCANForVSS` and `useCANForCLT` variables, which you can use to get the data from the correct data set.
+
+```js
+const bindRealtimeData = () => {
+  if (!checkCache('useCAN', useCanChannel())) checkSource();
+  updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'rpm'))
+  updateVSS(useCANForVSS ? canData.vss : safeReturn(basicData, 'kmh'))
+  updateCLT(useCANForCLT ? canData.clt : safeReturn(basicData, 'clt'))
 }
 ```
 <br>

@@ -1,0 +1,344 @@
+@font-face {
+    font-family: 'Digital';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#top-info span {
+    opacity: 0.15;
+}
+
+#top-info span[data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
+body {
+    background-color: #000;
+    color: #eee;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+}
+
+:root {
+    --rpm-deg: 1deg;
+    --kmh-deg: 0deg;
+    --fuel-deg: 0deg;
+    --clt-deg: 0deg;
+}
+
+#container {
+    transform-origin: center center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.digital-word {
+    font-family: 'Digital';
+    z-index: 4;
+}
+
+.absolute {
+    width: 1280px;
+    height: 480px;
+    position: absolute;
+}
+
+.icon {
+    position: fixed;
+    max-width: 40px;
+    height: 24px;
+}
+
+.fuel {
+    top: 385px;
+    left: 24%;
+}
+
+.bat {
+    top: 385px;
+    left: 15%;
+}
+
+.oil {
+    top: 385px;
+    left: 19%;
+}
+
+.clt {
+    top: 95px;
+    left: 270px;
+}
+
+.turn {
+    top: 70px;
+    left: 46%;
+}
+
+.handBrake {
+    top: 70px;
+    right: 24%;
+}
+
+.headlight {
+    top: 115px;
+    left: 20%;
+}
+
+.hheadlight {
+    top: 70px;
+    left: 25%;
+}
+
+.milha {
+    top: 75px;
+    left: 20%;
+}
+
+.neblina {
+    top: 90px;
+    left: 15%;
+}
+
+.door {
+    top: 100px;
+    right: 20%;
+    height: 30px;
+}
+
+.kmtotal {
+    position: absolute;
+    color: black;
+    top: 279px;
+    right: 19%;
+    text-align: right;
+    width: 87px;
+    overflow: hidden;
+    margin: 0 120px 0 0;
+}
+
+.kmtrip {
+    position: absolute;
+    color: black;
+    top: 301px;
+    right: 19%;
+    text-align: right;
+    width: 87px;
+    overflow: hidden;
+    margin: 0 120px 0 0;
+}
+
+.ECUErr {
+    top: 385px;
+    left: 41%;
+}
+
+.kmtotaltxt {
+    position: absolute;
+    color: black;
+    top: 302px;
+    right: 19%;
+    font-size: 10px;
+    font-family: Arial;
+    z-index: 4;
+    margin: 0 211px 0 0;
+}
+
+.kmtriptxt {
+    position: absolute;
+    color: black;
+    top: 280px;
+    right: 19%;
+    font-size: 10px;
+    font-family: Arial;
+    z-index: 4;
+    margin: 0 203px 0 0;
+}
+
+.ponteiroPequeno1 {
+    top: -7px;
+    width: 192px;
+    left: 35px;
+    transform: rotate(var(--fuel-deg));
+    animation: 3s rotate-verify-pequeno 1s ease-in-out;
+}
+
+.ponteiroPequeno2 {
+    position: fixed;
+    top: -7px;
+    width: 192px;
+    right: 26px;
+    transform: rotate(var(--clt-deg));
+    animation: 3s rotate-verify-reverse 1s ease-in-out;
+}
+
+.ponteiroMedio {
+    position: fixed;
+    top: -56px;
+    width: 277px;
+    left: 19%;
+    transform: rotate(var(--rpm-deg));
+    animation: 3s rotate-verify-medio 1s ease-in-out;
+    margin: 0 0 0 34px;
+}
+
+.ponteiroGrande {
+    position: fixed;
+    top: -20px;
+    width: 333px;
+    right: 19%;
+    transform: rotate(var(--kmh-deg));
+    animation: 3s rotate-verify-grande 1s ease-in-out;
+    margin: 0 42px 0 0;
+}
+
+.splitBg {
+    height: 365px;
+    width: 86%;
+    left: 7%;
+    position: absolute;
+    top: 60px;
+    z-index: -1;
+}
+
+.splitBg img {
+    position: absolute;
+    z-index: 5;
+}
+
+.splitBg .bg1 {
+    left: 0;
+    top: 94px;
+    z-index: 1;
+}
+
+.splitBg .bg2 {
+    left: 19%;
+    top: 6px;
+    z-index: 2;
+}
+
+.splitBg .bg3 {
+    top: 0;
+    right: 19%;
+    z-index: 3;
+}
+
+.splitBg .bg4 {
+    top: 94px;
+    right: 0;
+    z-index: 1;
+}
+
+#bgSet, .splitBg {
+    opacity: 0.01;
+}
+
+.anim-in .splitBg {
+    animation: 1s fade-in linear forwards;
+}
+
+.anim-in #bgSet {
+    animation: 2s fade-in 4s linear forwards;
+}
+
+#container.anim-out #bgSet,
+#container.anim-out .splitBg {
+    opacity: 1;
+}
+
+#container.anim-out {
+    opacity: 1;
+    animation-name: anim-out;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 3s;
+}
+
+@keyframes fade-in {
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes rotate-verify-pequeno {
+    1% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(145deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotate-verify-medio {
+    1% {
+        transform: rotate(1deg);
+    }
+
+    50% {
+        transform: rotate(168deg);
+    }
+
+    100% {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes rotate-verify-grande {
+    1% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(203deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotate-verify-reverse {
+    1% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(-148deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes anim-out {
+    1% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.7) translate(0, 0);
+    }
+    100% {
+      transform: scale(0.7) translate(0, -1000px);
+    }
+}

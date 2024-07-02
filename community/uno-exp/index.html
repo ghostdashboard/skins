@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uno way</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <!-- Painel -->
+        <div class="splitBg">
+            <img src="./assets/svgs/ponteiroPequeno.svg" class="absolute ponteiroPequeno1" id="ponteiroPequeno1">
+            <img src="./assets/svgs/ponteiroPequenoclt.svg" class="absolute ponteiroPequeno2" id="ponteiroPequeno2">
+            <img src="./assets/svgs/ponteiroMedio.svg" class="absolute ponteiroMedio">
+            <img src="./assets/svgs/ponteiroGrande.svg" class="absolute ponteiroGrande">
+            <span class="digital-word kmtrip" id="kmTotal">000000</span>
+            <span class="digital-word kmtotal" id="kmTrip">000000</span>
+            <span class="kmtotaltxt">KM</span>
+            <span class="kmtriptxt">TRIP</span>
+            <div id="bgSet">
+                <img src="./assets/bg1.png" class="bg1" />
+                <img src="./assets/bg2.png" class="bg2" />
+                <img src="./assets/bg3.png" class="bg3" />
+                <img src="./assets/bg4.png" class="bg4" />
+            </div>
+        </div>
+        <!-- itens de alerta -->
+        <div id="top-info">
+            <span id="battAlt"><img src="../../assets/_path_/battery.svg" class="icon bat" /></span>
+            <span id="fuelLight"><img src="../../assets/_path_/fuel.svg" class="icon fuel" id="fuelIcon" /></span>
+            <span id="ECUErr"><img src="../../assets/_path_/injection.svg" class="icon ECUErr" /></span>
+            <span id="eBrake"><img src="../../assets/_path_/handbrake.svg" class="icon handBrake" /></span>
+            <span id="parkLights"><img src="../../assets/_path_/headlight.svg" class="icon headlight" /></span>
+            <span id="highBeam"><img src="../../assets/_path_/hheadlight.svg" class="icon hheadlight" /></span>
+            <span id="oilSwitch"><img src="../../assets/_path_/oil.svg" class="icon oil" /></span>
+            <span id="turn"><img src="../../assets/_path_/turn.svg" class="icon turn" /></span>
+            <span id="fogLights"><img src="../../assets/_path_/milha.svg" class="icon milha" /></span>
+            <span id="auxLights"><img src="../../assets/_path_/neblina.svg" class="icon neblina" /></span>
+            <span id="openDoor"><img src="../../assets/_path_/door.svg" class="icon door" /></span>
+        </div>
+    </div>
+
+
+    <script src="../../assets/defaultSettings.js"></script>
+    <script src="../../assets/client.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body {
+    background: rgb(32, 30, 30);
+}
+
+main {
+    background-color: black;
+}
+
+:root {
+    --rpm-path: 0%;
+    --fuel-path: 0%;
+    --clt-path: 0%;
+    --boost-path: 0%;
+    --oilp-path: 90%;
+    --oilt-path: 90%;
+}
+
+.fil1 {fill:#006633}
+.fil3 {fill:#003399}
+.fil2 {fill:#00CCFF}
+.fil0 {fill:#33CC66}
+.fil7 {fill:#990000}
+.fil6 {fill:red}
+.fil5 {fill:#FF9933}
+.fil9 {fill:#FF9933}
+.fil4 {fill:yellow}
+.fil8 {fill:yellow}
+
+.leds {
+    top: 269px;
+    left: 460px;
+    position: absolute;
+    width: 719px;
+    height: 199px;
+}
+
+.leds svg g {
+    opacity: 0;
+}
+
+.leds svg [data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
+
+.digital-word {
+    font-family: 'Digital';
+}
+
+@font-face {
+    font-family: 'Digital';
+    src: url('../../../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+main {
+    height: 480px;
+    width: 1280px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.contagiros {
+    position: absolute;
+    clip-path: inset(0% var(--rpm-path) 0% 0%);
+    animation: contagiros 4s ease-in-out;
+    width: 1280px;
+    height: 480px;
+}
+
+.fundoContaGiros {
+    position: fixed;
+}
+
+.fundoOdometro {
+    position: fixed;
+}
+
+.fundoTrip {
+    position: fixed;
+}
+
+.odometroWrite {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 50%;
+    left: 11.5%;
+    position: fixed;
+}
+
+.odometroNumber {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 262px;
+    left: 88px;
+    position: absolute;
+    width: 200px;
+}
+
+.tripWrite {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 71%;
+    left: 13.5%;
+    position: fixed;
+}
+
+.tripNumber {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 368px;
+    left: 88px;
+    position: absolute;
+    width: 200px;
+}
+
+.kmhWrite {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 42%;
+    left: 13.5%;
+    position: fixed;
+}
+
+.rpmWrite {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 16%;
+    left: 81.5%;
+    position: fixed;
+}
+
+/* Sensores */
+
+
+.barFuel {
+    position: absolute;
+    animation: loadBars 4s ease-in-out;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 480px;
+    clip-path: inset(var(--fuel-path) 0 0 0);
+}
+
+.connected .barFuel,
+.connected .barOleotemp,
+.connected .barOleopresure,
+.connected .barCoolant,
+.connected .contagiros {
+    animation: none;
+}
+
+.barCoolant {
+    position: absolute;
+    animation: loadBars 4s ease-in-out;
+    width: 1280px;
+    height: 480px;
+    top: 0;
+    left: 0;
+    clip-path: inset(var(--clt-path) 0 0 0);
+}
+
+.barOleopresure {
+    position: absolute;
+    animation: loadBars 4s ease-in-out;
+    width: 1280px;
+    height: 480px;
+    top: 0;
+    left: 0;
+    clip-path: inset(var(--oilp-path) 0 0 0);
+}
+
+.barOleotemp {
+    position: absolute;
+    animation: loadBars 4s ease-in-out;
+    width: 1280px;
+    height: 480px;
+    top: 0;
+    left: 0;
+    clip-path: inset(var(--oilt-path) 0 0 0);
+}
+
+/* fim sensores */
+
+/* Boost */
+.BarBoost {
+    position: absolute;
+    animation: contagiros 4s ease-in-out;
+    width: 1280px;
+    height: 480px;
+}
+
+.fundoBoost {
+    position: absolute;
+    width: 1280px;
+    height: 480px;
+}
+
+.SpoonBoost {
+    position: fixed;
+}
+
+/* fim boost */
+
+.sinueta {
+    position: fixed;
+}
+
+.sinuetaTextOne {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 336px;
+    left: 979px;
+    position: absolute;
+}
+
+.sinuetaTextTwo {
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 336px;
+    left: 1068px;
+    position: absolute;
+}
+
+/* Velocimetro */
+.NumVelocimetro {
+    text-align: right;
+    color: #EA603C;
+    font-size: 12em;
+    top: 30px;
+    left: 174px;
+    position: absolute;
+    transform: skew(-10deg, 0deg) scaleY(0.95);
+    width: 360px;
+}
+
+.fundoCompleto {
+    width: 1280px;
+    height: 480px;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.fundoVelocimetro {
+    position: fixed;
+}
+
+.icones {
+    position: absolute;
+    width: 1280px;
+    height: 480px;
+    top: 0;
+    left: 0;
+}
+
+.lamp {
+    position: fixed;
+}
+
+@keyframes contagiros {
+    0% {
+        clip-path: polygon(0 0, 0 100%, 0% 100%, 0% 0);
+    }
+
+    100% {
+        clip-path: polygon(0 0, 0 100%, 115% 100%, 95% 0);
+    }
+}
+
+@keyframes loadBars {
+    0% {
+        clip-path: inset(100% 0 0 0);
+    }
+
+    50% {
+        clip-path: inset(50% 0 0 0);
+    }
+
+    100% {
+        clip-path: inset(0% 0 0 0);
+    }
+}

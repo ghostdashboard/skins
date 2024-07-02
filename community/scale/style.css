@@ -1,38 +1,42 @@
 @font-face {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: medium;
   font-weight: 600;
-  src: local("Rubik Medium"), local("Rubik-Medium"),
-    url("../../assets/fonts/Rubik-Medium.ttf") format("truetype");
+  src: local('Rubik Medium'), local('Rubik-Medium'), url('../../assets/fonts/Rubik-Medium.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "ChivoMono";
+  font-family: 'CPMono';
   font-style: light;
-  font-weight: 400;
-  src: local("ChivoMono Plain"), local("ChivoMono-Regular"),
-    url("../../assets/fonts/ChivoMono-Regular.ttf") format("opentype");
+  font-weight: 300;
+  src: local('CPMono Light'), local('CPMono-Light'), url('../../assets/fonts/CPMono-Light.otf') format('opentype');
 }
 
 @font-face {
-  font-family: "Saira";
+  font-family: 'Saira';
   font-style: bold;
   font-weight: 700;
-  src: local("Saira Bold"), local("Saira-Bold"),
-    url("../../assets/fonts/Saira-Bold.ttf") format("truetype");
+  src: local('Saira Bold'), local('Saira-Bold'), url('../../assets/fonts/Saira-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MonoNumbers';
+  font-style: light;
+  font-weight: 400;
+  src: local('ChivoMono Light'), local('ChivoMono-Light'), url('../../assets/fonts/ChivoMono-Light.ttf') format('opentype');
 }
 
 :root {
-  --lFuel-gauge-bar: 291px;
+  --comb-gauge-bar: 291px;
   --clt-gauge-bar: 291px;
   --rpm-deg: 294px;
   --kmh-deg: 294px;
   --main-color: #00d3ff;
   --second-color: #00d3ff;
+  --tps-gauge-bar: 11270;
 }
 
-body,
-html {
+body, html {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -40,12 +44,16 @@ html {
 
 body {
   background-color: #000;
-  color: #eee;
-  font-family: "Rubik", sans-serif;
+  color: #EEE;
+  font-family: 'Rubik', sans-serif;
   border: none;
   margin: 0;
   padding: 0;
   text-rendering: optimizeSpeed;
+}
+
+u, a, b, i {
+  text-decoration: none;
 }
 
 .bgcolor {
@@ -72,22 +80,22 @@ body {
   display: block;
 }
 
-.rpmbar,
-.kmhbar {
+.rpmbar, .kmhbar {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   transform-origin: bottom;
-  background-color: #fff;
+  background-color: #FFF;
   border-top: 4px solid white;
   z-index: 1;
 }
 
 #container.connected .bgcolor,
 #container.connected .rpmbar,
-#container.connected .kmhbar {
+#container.connected .kmhbar
+{
   background-color: var(--main-color);
   opacity: 1;
   animation: none;
@@ -126,22 +134,14 @@ body {
   z-index: 10;
 }
 
-.numbers {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 12;
-}
-#kmhnumbers,
-#right-gauge .bignumber {
-  transform: scaleX(-1);
-}
+.numbers {position: absolute;width: 100%;height: 100%;z-index: 12;}
+#kmhnumbers, #right-gauge .bignumber {transform: scaleX(-1);}
 
 .numbers > div {
   position: relative;
   font-size: 28px;
   text-shadow: 1px 1px 3px #000;
-  font-family: "Saira";
+  font-family: 'Saira';
   font-weight: 700;
   width: 20px;
   text-align: center;
@@ -181,9 +181,13 @@ body {
   width: 160px;
   text-align: center;
   text-shadow: 0px 0px 10px #000;
-  font-family: "Saira";
+  font-family: 'Saira';
   font-weight: 700;
   line-height: 80px;
+}
+
+#right-gauge .bignumber {
+
 }
 
 #bottomanimation {
@@ -240,7 +244,7 @@ body {
   background-color: var(--main-color);
   transform-origin: right;
   transform: translateX(291px);
-  border-left: 4px solid #fff;
+  border-left: 4px solid #FFF;
 }
 
 #top-gauges .gauge-mini .value {
@@ -251,6 +255,7 @@ body {
   position: absolute;
   top: 32px;
   right: 65px;
+  font-family: 'Saira';
 }
 
 #top-gauges .gauge-mini .value img {
@@ -259,12 +264,13 @@ body {
 }
 
 #top-gauges .gauge-mini .value div {
-  font-size: 24px;
+  font-size: 22px;
   margin: 0 4px;
 }
 
 #top-gauges .gauge-mini .value span {
-  font-family: "ChivoMono";
+  font-family: 'MonoNumbers';
+  font-weight: 700;
   font-size: 26px;
 }
 
@@ -287,7 +293,7 @@ body {
 }
 
 #top-gauges #left-gauge-mini > span div {
-  transform: translateX(var(--lFuel-gauge-bar));
+  transform: translateX(var(--comb-gauge-bar));
 }
 
 #centerLeftWidget {
@@ -296,8 +302,9 @@ body {
   width: 100%;
   height: 72px;
   display: block;
-  top: 190px;
+  top: 186px;
   opacity: 1;
+
 }
 
 #centerLeftWidget .mini-gauge {
@@ -321,7 +328,7 @@ body {
   border-top: none;
   border-bottom: none;
   overflow: hidden;
-  height: 68px;
+  height: 80px;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -331,74 +338,51 @@ body {
   border-right: none;
 }
 
-#centerLeftWidget .micro-gauges .micro-gauge > div {
+#centerLeftWidget .micro-gauges .micro-gauge>div {
   font-weight: 600;
   position: relative;
   color: #777;
   text-align: center;
 }
 
-#centerLeftWidget .micro-gauges .micro-gauge > div:after,
-#centerLeftWidget .micro-gauges .micro-gauge > p:after {
+#centerLeftWidget .micro-gauges .micro-gauge>div:after,
+#centerLeftWidget .micro-gauges .micro-gauge>p:after {
   left: inherit;
   right: -9px;
 }
 
-#centerLeftWidget .micro-gauges .micro-gauge > p:before,
-#centerLeftWidget .micro-gauges .micro-gauge > p:after {
+#centerLeftWidget .micro-gauges .micro-gauge>p:before,
+#centerLeftWidget .micro-gauges .micro-gauge>p:after {
   bottom: -10px;
   top: inherit;
 }
 
-#centerLeftWidget .micro-gauges .micro-gauge > p {
+#centerLeftWidget .micro-gauges .micro-gauge>p {
   margin: 0;
   position: relative;
   color: #777;
 }
 
-#centerLeftWidget .micro-gauges .micro-gauge > span {
-  font-family: "Saira";
-  font-size: 32px;
-  line-height: 36px;
-  color: #ffffff;
+#centerLeftWidget .micro-gauges .micro-gauge>span {
+  font-family: 'MonoNumbers';
+  font-size: 30px;
+  line-height: 44px;
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 /* svg colors */
-.str0 {
-  stroke: white;
-  stroke-width: 0.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-miterlimit: 22.9256;
-}
-.fil0 {
-  fill: none;
-}
-.fil2 {
-  fill: white;
-  fill-opacity: 0.3;
-}
-.fil1 {
-  fill: black;
-  fill-opacity: 0.5;
-}
-.fil3 {
-  fill: white;
-  fill-opacity: 0.5;
-}
-.fil4 {
-  fill: black;
-  fill-opacity: 0.6;
-}
-.fil5 {
-  fill: #00ccff;
-}
-.fil6 {
-  fill: #fff;
-}
+.str0 {stroke:white;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+.fil0 {fill:none}
+.fil2 {fill:white;fill-opacity:0.3}
+.fil1 {fill:black;fill-opacity:0.5}
+.fil3 {fill:white;fill-opacity:0.5}
+.fil4 {fill:black;fill-opacity:0.6}
+.fil5 {fill:#00CCFF}
+.fil6 {fill:#FFF}
 
 .mainColorFill {
-  fill: var(--main-color);
+  fill: var(--main-color)
 }
 
 .secondColorFill {
@@ -406,12 +390,8 @@ body {
 }
 
 /* animation variants */
-#container.connected .str5 {
-  stroke: #4d4d4d;
-}
-#container.connected .str6 {
-  stroke: var(--main-color);
-}
+#container.connected .str5 { stroke:#4D4D4D; }
+#container.connected .str6 { stroke:var(--main-color); }
 
 #container {
   display: block;
@@ -435,6 +415,7 @@ body {
   right: 0;
   box-sizing: border-box;
   z-index: 20;
+
 }
 
 #top-info .icons {
@@ -458,6 +439,7 @@ body {
   opacity: 0.1;
   padding: 0;
   display: inline-block;
+
 }
 
 #top-info .icons #OIL img {
@@ -501,9 +483,10 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 
-#bottom-odo > div {
+#bottom-odo>div {
   display: flex;
   text-align: center;
   align-items: center;
@@ -512,12 +495,12 @@ body {
 }
 
 #bottom-odo span {
-  font-family: "Saira";
+  font-family: 'Saira';
   font-size: 20px;
   line-height: 30px;
   letter-spacing: 1px;
   margin: 0 5px;
-  color: #fff;
+  color: #FFF;
   font-weight: 700;
 }
 
@@ -565,6 +548,7 @@ body {
   opacity: 1;
   left: 10px;
   top: 70px;
+
 }
 
 .circle > img {
@@ -603,6 +587,7 @@ body {
   opacity: 0;
   will-change: transform, opacity;
 }
+
 
 .anim-in #top-gauges,
 .anim-in .toplines {
@@ -643,7 +628,7 @@ body {
 .anim-in .toplines,
 .anim-in #main-gauges {
   animation-name: zoom-in;
-  animation-timing-function: cubic-bezier(0, 1, 1, 1);
+  animation-timing-function: cubic-bezier(0,1,1,1);
   animation-fill-mode: forwards;
   animation-duration: 1s;
 }
@@ -690,7 +675,8 @@ body {
 }
 
 .anim-out .circle .numbers,
-.anim-out .circle .bignumber {
+.anim-out .circle .bignumber
+{
   animation-delay: 1s;
 }
 
@@ -700,7 +686,8 @@ body {
 
 .anim-out #bottom-odo,
 .anim-out .navcursor,
-.anim-out #bottomanimation {
+.anim-out #bottomanimation
+{
   animation-delay: 1.5s;
 }
 
@@ -726,7 +713,10 @@ body {
   animation-duration: 1s;
 }
 
+
+
 /* KEYFRAMES */
+
 @keyframes fade-in {
   1% {
     opacity: 0.01;
