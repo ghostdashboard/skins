@@ -4,13 +4,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GTR 35</title>
+    <title>STI</title>
+    <style>
+        :root {
+            --rpm-deg: 232deg;
+            --fuel-deg: 226deg;
+            --coolant-deg: 132deg;
+            --speed-deg: 236deg;
+        }
+
+        .oilFuelCoolGauge,
+        .rpmGauge,
+        .speedGauge {
+            position: absolute;
+            scale: 1.0;
+            transform: translate(-50%, -50%);
+        }
+
+        .oilFuelCoolGauge {
+            top: 50%;
+            left: 21%;
+        }
+
+        .rpmGauge {
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+        }
+
+        .speedGauge {
+            top: 50%;
+            left: 79%;
+        }
+
+        /* Ponteiros */
+        .ponteiroRpm {
+            top: 29%;
+            left: 50%;
+            position: absolute;
+            scale: 1.0;
+            transform: translate(-50%, -50%) rotate(var(--rpm-deg));
+            transform-origin: center 85%;
+        }
+
+        .ponteiroSpeed {
+            width: 14%;
+            top: 33%;
+            left: 50%;
+            position: absolute;
+            scale: 1.0;
+            transform: translate(-50%, -50%) rotate(var(--speed-deg));
+            transform-origin: center 85%;
+        }
+
+        .ponteiroFuel {
+            top: 42%;
+            left: 36%;
+            position: absolute;
+            scale: 1.0;
+            transform: translate(-50%, -50%) rotate(var(--fuel-deg));
+            transform-origin: center 75%;
+        }
+
+        .ponteiroCoolant {
+            top: 42%;
+            left: 69%;
+            position: absolute;
+            scale: 1.0;
+            transform: translate(-50%, -50%) rotate(var(--coolant-deg));
+            transform-origin: center 75%;
+        }
+
+        .oilTemp {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 2rem;
+            color: #F80000;
+            position: absolute;
+            top: 87%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        GTR
+        <div class="rpmGauge">
+            <img src="./assets/ponteiroNormal.png" class="ponteiroRpm" alt="">
+            <img src="./assets/rpmGauge.png" alt="">
+        </div>
+        <div class="oilFuelCoolGauge">
+            <div class="oilTemp"><span id="oilTemp">95</span></div>
+            <img src="./assets/ponteiroPequeno.png" class="ponteiroFuel" alt="">
+            <img src="./assets/ponteiroPequeno.png" class="ponteiroCoolant" alt="">
+            <img src="./assets/oilFuelCoolGauge.png" alt="">
+        </div>
+        <div class="speedGauge">
+            <img src="./assets/ponteiroNormal.png" class="ponteiroSpeed" alt="">
+            <img src="./assets/speedGauge.png" alt="">
+        </div>
+        <script src="../../assets/defaultSettings.js" type="text/javascript"></script>
+        <script src="../../assets/client.js" type="text/javascript"></script>
+        <script src="./script.js" type="text/javascript"></script>
     </div>
+
 </body>
 
 </html>
