@@ -27,8 +27,7 @@ const callback = () => {
     setRootCSS('--rpm-deg', `${(((+value / maxRPM) * 230) + 247)}deg`)
   }
 
-  console.log(canData)
-  console.log(basicData)
+
 
   const setKmhDeg = (val) => {
     if (+val > 250 || +val < 0) return
@@ -75,7 +74,7 @@ const callback = () => {
       setText(battLevel, canData.batt)
       setText(lambda, canData.lambda)
       setText(oilPressure, canData.oilPress)
-      setText(tps, canData.tps)
+      setText(tps, canData.tps + '%')
     }
 
     updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'rpm'))

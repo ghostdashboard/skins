@@ -1,0 +1,328 @@
+:root {
+    --rpm-deg: 232deg;
+    --fuel-deg: 226deg;
+    --coolant-deg: 132deg;
+    --kmh-deg: 236deg;
+}
+
+
+@font-face {
+    font-family: 'Digital';
+    src: url(./assets/font/Digital.ttf);
+}
+
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    color: #eee;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+    scale: 1.0;
+}
+
+.oilFuelCoolGauge,
+.rpmGauge,
+.speedGauge {
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: gauges 2s ease-in-out forwards;
+}
+
+.oilFuelCoolGauge {
+    top: 50%;
+    left: 21%;
+}
+
+.rpmGauge {
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+}
+
+.speedGauge {
+    top: 50%;
+    left: 79%;
+}
+
+/* Ponteiros */
+.ponteiroRpm {
+    top: 29%;
+    left: 50%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--rpm-deg));
+    transform-origin: center 85%;
+    animation: ponteiroRpm 2s ease-in-out forwards;
+    opacity: 1 !important;
+}
+
+.ponteiroSpeed {
+    width: 14%;
+    top: 33%;
+    left: 50%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--kmh-deg));
+    transform-origin: center 85%;
+    animation: ponteiroSpeed 2s ease-in-out forwards;
+    opacity: 1 !important;
+}
+
+.ponteiroFuel {
+    top: 42%;
+    left: 32%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--fuel-deg));
+    transform-origin: center 75%;
+    animation: ponteiroFuel 2s ease-in-out forwards;
+    opacity: 1 !important;
+}
+
+.ponteiroCoolant {
+    top: 42%;
+    left: 67%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--coolant-deg));
+    transform-origin: center 75%;
+    animation: ponteiroCoolant 2s ease-in-out forwards;
+    opacity: 1 !important;
+}
+
+.oilTemp {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    color: #F80000;
+    position: absolute;
+    top: 87%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.speedTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 92%;
+    left: 7%;
+    transform: translate(-50%, -50%);
+}
+
+.speedNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    color: #F80000;
+    position: absolute;
+    top: 94%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+
+.tpsTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 92%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+}
+
+.tpsNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    color: #F80000;
+    position: absolute;
+    top: 94%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+}
+
+.trip {
+    font-family: 'Digital';
+    font-size: 0.8rem;
+    color: #F80000;
+    position: absolute;
+    top: 77%;
+    left: 57%;
+}
+
+.kmtotal {
+    font-family: 'Digital';
+    font-size: 1.1rem;
+    color: #F80000;
+    position: absolute;
+    top: 83%;
+    left: 55%;
+}
+
+@keyframes gauges {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes ponteiroRpm {
+    0% {
+        transform: translate(-50%, -50%) rotate(232deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(486deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(232deg);
+    }
+}
+
+@keyframes ponteiroSpeed {
+    0% {
+        transform: translate(-50%, -50%) rotate(236deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(486deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(236deg);
+    }
+}
+
+@keyframes ponteiroFuel {
+    0% {
+        transform: translate(-50%, -50%) rotate(226deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(312deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(226deg);
+    }
+}
+
+@keyframes ponteiroCoolant {
+    0% {
+        transform: translate(-50%, -50%) rotate(132deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) rotate(49deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(132deg);
+    }
+}
+
+#container {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 1px;
+    left: 0px;
+    border: none;
+    overflow: hidden;
+    transform: scale(1);
+    max-height: 500px;
+}
+
+#top-info .icons {
+    /* position: absolute;
+    text-align: center;
+    width: 50%;
+    top: 4%;
+    left: 25%; */
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    text-align: center;
+    width: 70%;
+    top: 4%;
+    left: 15%;
+}
+
+#top-info .icons.bottom {
+    bottom: 4%;
+    top: auto;
+}
+
+#top-info .icons span {
+    height: 35px;
+    align-items: center;
+    margin: 0;
+    width: calc(75% / 6);
+    opacity: 0.1;
+    padding: 0;
+    display: inline-block;
+    will-change: opacity;
+}
+
+#top-info .icons #OIL img {
+    max-width: 45px;
+}
+
+#top-info .icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
+#top-info .icons span img {
+    width: auto;
+    height: 35px;
+    max-width: 38px;
+    line-height: 40px;
+    display: inline-block;
+    align-self: center;
+}
+
+#top-info .icons .icons-divider {
+    width: 240px;
+}
+
+#top-info .icons .icons-divider img {
+    width: 50px;
+    max-width: inherit;
+    max-height: 50px;
+}
+
+.anim-in #top-gauges,
+.anim-in .toplines {
+    animation-delay: 2s;
+}
+
+.anim-in #top-info {
+    animation-delay: 4s;
+}
+
+.anim-in #top-info,
+.anim-in #top-gauges,
+.anim-in .toplines,
+.anim-in #main-gauges {
+    animation-name: zoom-in;
+    animation-timing-function: cubic-bezier(0, 1, 1, 1);
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
