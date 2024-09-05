@@ -13,36 +13,34 @@ const callback = () => {
     fuelPressure, lambda, oilPressure, mapBoost, boost, fuelLevel, cltNow
   } = elems;
   const { clt } = DASH_OPTIONS
-  const maxRPM = 8000;
+  const maxRPM = 9000;
   const signalsLen = signals.length - 2
 
+  kmTotal.toString().padStart(6, '0');
   loadOdo(kmTotal, kmTrip, 0)
-
   const updateKMH = (val) => {
     setText(speedo, zeroFixed(val))
   }
 
   const updateRPM = (value) => {
     if (+value > maxRPM || +value < 0) return
-    setRootCSS('--rpm-deg', `${(((+value / maxRPM) * 230) + 247)}deg`)
+    setRootCSS('--rpm-deg', `${(((+value / maxRPM) * 285) + 233)}deg`)
   }
 
-
-
   const setKmhDeg = (val) => {
-    if (+val > 250 || +val < 0) return
-    if (+val > 0 && +val < 100) setRootCSS('--kmh-deg', `${(((+val / 100) * 100) + 229)}deg`)
-    if (+val > 101 && +val < 301) setRootCSS('--kmh-deg', `${(((+val / 230) * 105) + 282)}deg`)
+    if (+val > 260 || +val < 0) return
+    if (+val > 0 && +val < 20) setRootCSS('--kmh-deg', `${(((+val / 100) * 45) + 235)}deg`)
+    if (+val > 20 && +val < 260) setRootCSS('--kmh-deg', `${(((+val / 100) * 100) + 224)}deg`)
   }
 
   const setFuelDeg = (val) => {
     if (+val > 100 || +val < 0) return
-    setRootCSS('--fuel-deg', `${(139 - ((+val / 100) * 95))}deg`)
+    setRootCSS('--fuel-deg', `-${(132 - ((+val / 100) * 84))}deg`)
   }
 
   const setCLTDeg = (val) => {
     if (+val > clt || +val < 0) return
-    setRootCSS('--clt-deg', `${(((+val / clt) * 100) + 315)}deg`)
+    setRootCSS('--clt-deg', `${(132 - ((+val / 100) * 78))}deg`)
   }
 
   const setBoostDeg = (val) => {
@@ -86,6 +84,7 @@ const callback = () => {
 
 
     requestAnimationFrame(bindRealtimeData);
+
   }
 
   setTimeout(() => openConnection(bindRealtimeData), 6000)

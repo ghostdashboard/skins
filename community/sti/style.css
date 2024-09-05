@@ -1,7 +1,7 @@
 :root {
     --rpm-deg: 232deg;
     --fuel-deg: 226deg;
-    --coolant-deg: 132deg;
+    --clt-deg: 132deg;
     --kmh-deg: 236deg;
 }
 
@@ -63,7 +63,7 @@ body {
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(var(--rpm-deg));
     transform-origin: center 85%;
-    animation: ponteiroRpm 2s ease-in-out forwards;
+    animation: ponteiroRpm 2s ease-in-out;
     opacity: 1 !important;
 }
 
@@ -75,7 +75,7 @@ body {
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(var(--kmh-deg));
     transform-origin: center 85%;
-    animation: ponteiroSpeed 2s ease-in-out forwards;
+    animation: ponteiroSpeed 2s ease-in-out;
     opacity: 1 !important;
 }
 
@@ -86,22 +86,31 @@ body {
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(var(--fuel-deg));
     transform-origin: center 75%;
-    animation: ponteiroFuel 2s ease-in-out forwards;
+    animation: ponteiroFuel 2s ease-in-out;
     opacity: 1 !important;
 }
 
 .ponteiroCoolant {
     top: 42%;
-    left: 67%;
+    left: 68%;
     position: absolute;
     scale: 1.0;
-    transform: translate(-50%, -50%) rotate(var(--coolant-deg));
+    transform: translate(-50%, -50%) rotate(var(--clt-deg));
     transform-origin: center 75%;
-    animation: ponteiroCoolant 2s ease-in-out forwards;
+    animation: ponteiroCoolant 2s ease-in-out;
     opacity: 1 !important;
 }
 
-.oilTemp {
+.oilPressTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 79%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.oilPressNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 2rem;
     color: #F80000;
@@ -123,11 +132,11 @@ body {
 
 .speedNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #F80000;
     position: absolute;
     top: 94%;
-    left: 20%;
+    left: 18%;
     transform: translate(-50%, -50%);
 }
 
@@ -137,36 +146,84 @@ body {
     color: #F80000;
     position: absolute;
     top: 92%;
-    left: 33%;
+    left: 29%;
     transform: translate(-50%, -50%);
 }
 
 .tpsNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #F80000;
     position: absolute;
     top: 94%;
-    left: 46%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.lbdTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 92%;
+    left: 56%;
+    transform: translate(-50%, -50%);
+}
+
+.lbdNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.6rem;
+    color: #F80000;
+    position: absolute;
+    top: 94%;
+    left: 66%;
+    transform: translate(-50%, -50%);
+}
+
+.bstTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 92%;
+    left: 79%;
+    transform: translate(-50%, -50%);
+}
+
+.bstNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.6rem;
+    color: #F80000;
+    position: absolute;
+    top: 94%;
+    left: 91%;
     transform: translate(-50%, -50%);
 }
 
 .trip {
+    width: 62.67px;
+    text-align: right;
+    position: absolute;
     font-family: 'Digital';
     font-size: 0.8rem;
     color: #F80000;
-    position: absolute;
-    top: 77%;
-    left: 57%;
+    top: 77.5%;
+    left: 45%;
 }
 
 .kmtotal {
+    width: 86.87px;
+    text-align: right;
+    position: absolute;
     font-family: 'Digital';
     font-size: 1.1rem;
     color: #F80000;
-    position: absolute;
     top: 83%;
-    left: 55%;
+    left: 37.5%;
+}
+
+.totais {
+    text-align: right;
 }
 
 @keyframes gauges {
@@ -259,9 +316,9 @@ body {
     flex-direction: row;
     position: absolute;
     text-align: center;
-    width: 70%;
+    width: 81%;
     top: 4%;
-    left: 15%;
+    left: 9.5%;
 }
 
 #top-info .icons.bottom {
@@ -323,6 +380,5 @@ body {
 .anim-in #main-gauges {
     animation-name: zoom-in;
     animation-timing-function: cubic-bezier(0, 1, 1, 1);
-    animation-fill-mode: forwards;
     animation-duration: 1s;
 }
