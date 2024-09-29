@@ -19,13 +19,15 @@ const callback = () => {
 
 
   loadOdo(kmTotal, kmTrip, 0)
+
   const updateKMH = (val) => {
     setText(speedo, zeroFixed(val))
   }
 
   const updateRPM = (value) => {
+    setText(rpm, zeroFixed(value))
     if (+value > maxRPM || +value < 0) return
-    setRootCSS('--rpm-deg', `${(260 + ((+value / maxRPM) * 225))}deg`)
+    setRootCSS('--rpm-deg', `${(260 + ((+value / maxRPM) * 200))}deg`)
   }
 
   const setKmhDeg = (val) => {
