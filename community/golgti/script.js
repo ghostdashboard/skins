@@ -68,6 +68,7 @@ const callback = () => {
       }
     }
 
+    
     if (useCAN) {
       setText(mapBoost, mapFormat(canData.map))
       setText(fuelPressure, canData.fuelPress)
@@ -93,7 +94,6 @@ const callback = () => {
 
 
 
-  switchIcons(document.querySelectorAll('#top-info img'))
   container.classList.add('anim-in')
 };
 

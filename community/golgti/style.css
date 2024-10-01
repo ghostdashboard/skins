@@ -114,124 +114,118 @@ body {
 
 .oilPressNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 16%;
+    top: 23%;
     left: 28%;
     transform: translate(-50%, -50%);
 }
 
 .fuelPressNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 16%;
-    left: 74%;
+    top: 23%;
+    left: 73%;
     transform: translate(-50%, -50%);
 }
 
 .battNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 24.6%;
-    left: 74%;
-    transform: translate(-50%, -50%);
-}
-
-.speedTitle {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
-    color: #F80000;
-    position: absolute;
-    top: 92%;
-    left: 7%;
+    top: 78.6%;
+    left: 72%;
     transform: translate(-50%, -50%);
 }
 
 .rpmNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.6rem;
-    color: #000;
+    font-size: 1.4rem;
+    color: #F80000;
     position: absolute;
-    top: 89%;
-    left: 76%;
+    top: 92%;
+    left: 73%;
     transform: translate(-50%, -50%);
 }
 
 .speedNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.6rem;
-    color: #000;
-    position: absolute;
-    top: 81%;
-    left: 76%;
-    transform: translate(-50%, -50%);
-}
-
-.tpsTitle {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
     top: 92%;
-    left: 29%;
+    left: 28%;
     transform: translate(-50%, -50%);
 }
 
 .tpsNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 7.6%;
-    left: 74%;
-    transform: translate(-50%, -50%);
-}
-
-.lbdTitle {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
-    color: #F80000;
-    position: absolute;
-    top: 92%;
-    left: 56%;
+    top: 9.6%;
+    left: 73%;
     transform: translate(-50%, -50%);
 }
 
 .lbdNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 7.6%;
+    top: 9.6%;
     left: 28%;
     transform: translate(-50%, -50%);
 }
 
-.bstTitle {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
-    color: #F80000;
-    position: absolute;
-    top: 92%;
-    left: 79%;
-    transform: translate(-50%, -50%);
-}
 
 .bstNumber {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1rem;
+    font-size: 1.4rem;
     color: #F80000;
     position: absolute;
-    top: 24.6%;
+    top: 78.6%;
     left: 28%;
     transform: translate(-50%, -50%);
 }
 
+.absolute {
+    position: absolute;
+}
+
+.farolBaixo {
+    top: 41%;
+    left: 80%;
+}
+
+.luzOleo {
+    top: 41%;
+    left: 62%;
+}
+
+.luzhandbrake {
+    top: 50.5%;
+    left: 62%;
+}
+
+.luzBatt {
+    top: 41%;
+    left: 25.5%;
+}
+
+.engCheck {
+    top: 50.5%;
+    left: 25.5%;
+}
+
+.luzSetas {
+    top: 41%;
+    left: 7.2%;
+}
 
 .triptext {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -360,80 +354,10 @@ body {
     max-height: 500px;
 }
 
-#top-info .icons {
-    /* position: absolute;
-    text-align: center;
-    width: 50%;
-    top: 4%;
-    left: 25%; */
-    flex-wrap: nowrap;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    text-align: center;
-    width: 81%;
-    top: 4%;
-    left: 9.5%;
+#leds span img {
+    opacity: 0;
 }
 
-#top-info .icons.bottom {
-    bottom: 4%;
-    top: auto;
-}
-
-#top-info .icons span {
-    height: 35px;
-    align-items: center;
-    margin: 0;
-    width: calc(75% / 6);
-    opacity: 0.1;
-    padding: 0;
-    display: inline-block;
-    will-change: opacity;
-}
-
-#top-info .icons #OIL img {
-    max-width: 45px;
-}
-
-#top-info .icons span[data-etoggle="1"],
-.turn-arrows[data-etoggle="1"] {
+#leds span[data-etoggle="1"] img {
     opacity: 1 !important;
-}
-
-#top-info .icons span img {
-    width: auto;
-    height: 35px;
-    max-width: 38px;
-    line-height: 40px;
-    display: inline-block;
-    align-self: center;
-}
-
-#top-info .icons .icons-divider {
-    width: 240px;
-}
-
-#top-info .icons .icons-divider img {
-    width: 50px;
-    max-width: inherit;
-    max-height: 50px;
-}
-
-.anim-in #top-gauges,
-.anim-in .toplines {
-    animation-delay: 2s;
-}
-
-.anim-in #top-info {
-    animation-delay: 4s;
-}
-
-.anim-in #top-info,
-.anim-in #top-gauges,
-.anim-in .toplines,
-.anim-in #main-gauges {
-    animation-name: zoom-in;
-    animation-timing-function: cubic-bezier(0, 1, 1, 1);
-    animation-duration: 1s;
 }
