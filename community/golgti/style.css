@@ -30,7 +30,7 @@ body {
 }
 
 .oilFuelCoolGauge,
-.rpmGauge,
+.center,
 .speedGauge {
     position: absolute;
     scale: 1.0;
@@ -44,7 +44,7 @@ body {
     left: 21%;
 }
 
-.rpmGauge {
+.center {
     top: 50%;
     left: 50%;
     z-index: 1;
@@ -202,6 +202,11 @@ body {
     left: 80%;
 }
 
+.farolete {
+    top: 41%;
+    left: 43.5%;
+}
+
 .luzOleo {
     top: 41%;
     left: 62%;
@@ -223,6 +228,11 @@ body {
 }
 
 .luzSetas {
+    top: 41%;
+    left: 7.2%;
+}
+
+.luzFarolAlto {
     top: 41%;
     left: 7.2%;
 }
@@ -356,8 +366,52 @@ body {
 
 #leds span img {
     opacity: 0;
+    transition: 0.3s;
 }
 
 #leds span[data-etoggle="1"] img {
+    transition: 0.3s;
     opacity: 1 !important;
+}
+
+.engCheckIcon {
+    width: 12%;
+    top: 62.4%;
+    left: 26%;
+}
+
+.eBrakeIcon {
+    width: 12%;
+    top: 62.4%;
+    left: 62.3%;
+}
+
+.battIcon {
+    width: 11%;
+    top: 31.6%;
+    left: 26%;
+}
+
+.oilIcon {
+    width: 12%;
+    top: 32%;
+    left: 62.3%;
+}
+
+.headlightIcon {
+    width: 12%;
+    top: 32%;
+    left: 44.3%;
+}
+
+.hheadlightIcon {
+    width: 11%;
+    top: 31%;
+    left: 80.3%;
+}
+
+.turnIcon {
+    width: 12%;
+    top: 32%;
+    left: 8.3%;
 }
