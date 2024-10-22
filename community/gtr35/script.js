@@ -13,8 +13,10 @@ const callback = () => {
     fuelPressure, lambda, oilPressure, mapBoost, boost, fuelLevel, cltNow
   } = elems;
   const { clt } = DASH_OPTIONS
-  const maxRPM = 8000;
+  const maxRPM = 9000;
   const signalsLen = signals.length - 2
+
+
 
   loadOdo(kmTotal, kmTrip, 0)
 
@@ -23,27 +25,24 @@ const callback = () => {
   }
 
   const updateRPM = (value) => {
+    setText(rpm, zeroFixed(value))
     if (+value > maxRPM || +value < 0) return
-    setRootCSS('--rpm-deg', `${(((+value / maxRPM) * 230) + 247)}deg`)
+    setRootCSS('--rpm-deg', `${(260 + ((+value / maxRPM) * 200))}deg`)
   }
 
-  console.log(canData)
-  console.log(basicData)
-
   const setKmhDeg = (val) => {
-    if (+val > 250 || +val < 0) return
-    if (+val > 0 && +val < 100) setRootCSS('--kmh-deg', `${(((+val / 100) * 100) + 229)}deg`)
-    if (+val > 101 && +val < 301) setRootCSS('--kmh-deg', `${(((+val / 230) * 105) + 282)}deg`)
+    if (+val > 320 || +val < 0) return
+    if (+val > 20) setRootCSS('--kmh-deg', `${(207 + ((+val / 100) * 90))}deg`)
   }
 
   const setFuelDeg = (val) => {
     if (+val > 100 || +val < 0) return
-    setRootCSS('--fuel-deg', `${(139 - ((+val / 100) * 95))}deg`)
+    setRootCSS('--fuel-deg', `-${(20.5 + ((+val / 100) * 44))}deg`)
   }
 
   const setCLTDeg = (val) => {
     if (+val > clt || +val < 0) return
-    setRootCSS('--clt-deg', `${(((+val / clt) * 100) + 315)}deg`)
+    setRootCSS('--clt-deg', `${(19.5 + ((+val / 100) * 40))}deg`)
   }
 
   const setBoostDeg = (val) => {
@@ -69,13 +68,14 @@ const callback = () => {
       }
     }
 
+    
     if (useCAN) {
       setText(mapBoost, mapFormat(canData.map))
       setText(fuelPressure, canData.fuelPress)
       setText(battLevel, canData.batt)
       setText(lambda, canData.lambda)
       setText(oilPressure, canData.oilPress)
-      setText(tps, canData.tps)
+      setText(tps, canData.tps + '%')
     }
 
     updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'rpm'))
@@ -87,11 +87,13 @@ const callback = () => {
 
 
     requestAnimationFrame(bindRealtimeData);
+
   }
 
   setTimeout(() => openConnection(bindRealtimeData), 6000)
 
-  switchIcons(document.querySelectorAll('#top-info img'))
+
+
   container.classList.add('anim-in')
 };
 
