@@ -1,7 +1,7 @@
 :root {
     --rpm-deg: 220deg;
-    --fuel-deg: -20.5deg;
-    --clt-deg: 19.5deg;
+    --fuel-deg: 232deg;
+    --clt-deg: 232deg;
     --kmh-deg: 139deg;
 }
 
@@ -9,6 +9,11 @@
 @font-face {
     font-family: 'Digital';
     src: url(./assets/font/Digital.ttf);
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url(./assets/font/Rubik-Bold.ttf);
 }
 
 
@@ -42,17 +47,24 @@ body {
 .oilFuelCoolGauge {
     top: 50%;
     left: 81%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 1;
 }
 
 .rpmGauge {
+    animation: ponteiros 1s ease-in-out forwards;
     top: 50%;
     left: 50%;
     z-index: 1;
+    filter: drop-shadow(2px 0px 6px black);
+    opacity: 1;
 }
 
 .speedGauge {
+    animation: ponteiros 1s ease-in-out forwards;
     top: 50%;
     left: 20%;
+    opacity: 1;
 }
 
 /* Ponteiros */
@@ -63,10 +75,12 @@ body {
     position: absolute;
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(220deg);
-    /* transform: translate(-50%, -50%) rotate(var(--rpm-deg)); */
+    transform: translate(-50%, -50%) rotate(var(--rpm-deg));
     transform-origin: center 85%;
-    animation: ponteiroRpm 0.6s ease-in-out;
-    opacity: 1;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 1s;
 }
 
 .ponteiroSpeed {
@@ -76,32 +90,38 @@ body {
     position: absolute;
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(139deg);
-    /* transform: translate(-50%, -50%) rotate(var(--kmh-deg)); */
+    transform: translate(-50%, -50%) rotate(var(--kmh-deg));
     transform-origin: center 85%;
-    animation: ponteiroSpeed 0.6s ease-in-out;
-    opacity: 1;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 1s;
 }
 
 .ponteiroFuel {
-    top: 90%;
-    left: 49.5%;
+    top: 67.5%;
+    left: 36.5%;
     position: absolute;
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(var(--fuel-deg));
-    transform-origin: center -395%;
-    animation: ponteiroFuel 2s ease-in-out;
-    opacity: 1 !important;
+    transform-origin: center 75%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 1s;
 }
 
 .ponteiroCoolant {
-    top: 90%;
-    left: 49.5%;
+    top: 42.5%;
+    left: 82.5%;
     position: absolute;
     scale: 1.0;
     transform: translate(-50%, -50%) rotate(var(--clt-deg));
-    transform-origin: center -395%;
-    animation: ponteiroCoolant 2s ease-in-out;
-    opacity: 1 !important;
+    transform-origin: center 75%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 1s;
 }
 
 .oilPressTitle {
@@ -155,12 +175,12 @@ body {
 }
 
 .speedNumber {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.4rem;
-    color: #F80000;
+    font-family: "Rubik";
+    font-size: 2rem;
+    color: #ffffff;
     position: absolute;
-    top: 92%;
-    left: 28%;
+    top: 50%;
+    left: 73%;
     transform: translate(-50%, -50%);
 }
 
@@ -297,9 +317,8 @@ body {
     }
 }
 
-@keyframes ponteiroRpm {
+@keyframes ponteiros {
     0% {
-        /* transform: translate(-50%, -50%) rotate(139deg); */
         opacity: 1;
     }
 
@@ -321,76 +340,13 @@ body {
 
     50% {
         opacity: 0;
-        /* transform: translate(-50%, -50%) rotate(400deg); */
     }
 
     100% {
         opacity: 1;
-        /* transform: translate(-50%, -50%) rotate(139deg); */
-    }
-
-}
-
-@keyframes ponteiroSpeed {
-    0% {
-        /* transform: translate(-50%, -50%) rotate(139deg); */
-        opacity: 1;
-    }
-
-    10% {
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 1;
-    }
-
-    30% {
-        opacity: 0;
-    }
-
-    40% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-        /* transform: translate(-50%, -50%) rotate(400deg); */
-    }
-
-    100% {
-        opacity: 1;
-        /* transform: translate(-50%, -50%) rotate(139deg); */
     }
 }
 
-@keyframes ponteiroFuel {
-    0% {
-        transform: translate(-50%, -50%) rotate(-20.5deg);
-    }
-
-    50% {
-        transform: translate(-50%, -50%) rotate(-64deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(-20.5deg);
-    }
-}
-
-@keyframes ponteiroCoolant {
-    0% {
-        transform: translate(-50%, -50%) rotate(19.5deg);
-    }
-
-    50% {
-        transform: translate(-50%, -50%) rotate(64deg);
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotate(19.5deg);
-    }
-}
 
 #container {
     display: block;
@@ -412,7 +368,7 @@ body {
 
 #leds span[data-etoggle="1"] img {
     transition: 0.3s;
-    opacity: 1 !important;
+    opacity: 1;
 }
 
 .engCheckIcon {

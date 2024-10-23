@@ -27,22 +27,23 @@ const callback = () => {
   const updateRPM = (value) => {
     setText(rpm, zeroFixed(value))
     if (+value > maxRPM || +value < 0) return
-    setRootCSS('--rpm-deg', `${(260 + ((+value / maxRPM) * 200))}deg`)
+    setRootCSS('--rpm-deg', `${(220 + ((+value / maxRPM) * 245))}deg`)
   }
 
   const setKmhDeg = (val) => {
-    if (+val > 320 || +val < 0) return
-    if (+val > 20) setRootCSS('--kmh-deg', `${(207 + ((+val / 100) * 90))}deg`)
+    if (+val > 340 || +val < 0) return
+    if (+val > 0 && +val <= 100) setRootCSS('--kmh-deg', `${(139 + ((+val / 100) * 101))}deg`)
+    if (+val > 100 && +val <= 340) setRootCSS('--kmh-deg', `${(170 + ((+val / 100) * 68))}deg`)
   }
 
   const setFuelDeg = (val) => {
     if (+val > 100 || +val < 0) return
-    setRootCSS('--fuel-deg', `-${(20.5 + ((+val / 100) * 44))}deg`)
+    setRootCSS('--fuel-deg', `${(232 + ((+val / 100) * 76))}deg`)
   }
 
   const setCLTDeg = (val) => {
     if (+val > clt || +val < 0) return
-    setRootCSS('--clt-deg', `${(19.5 + ((+val / 100) * 40))}deg`)
+    setRootCSS('--clt-deg', `${(232 + ((+val / 100) * 70))}deg`)
   }
 
   const setBoostDeg = (val) => {
@@ -68,14 +69,14 @@ const callback = () => {
       }
     }
 
-    
+
     if (useCAN) {
       setText(mapBoost, mapFormat(canData.map))
       setText(fuelPressure, canData.fuelPress)
       setText(battLevel, canData.batt)
       setText(lambda, canData.lambda)
       setText(oilPressure, canData.oilPress)
-      setText(tps, canData.tps + '%')
+      // setText(tps, canData.tps + '%')
     }
 
     updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'rpm'))
