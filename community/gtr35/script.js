@@ -1,7 +1,7 @@
 const callback = () => {
   // Variables, constants and DOM elements
   const signals = [
-    'battAlt', 'eBrake', 'highBeam', 'parkLights', 'fogLights', 'auxLights',
+    'turnLeft', 'turnRight', 'battAlt', 'eBrake', 'highBeam', 'parkLights', 'fogLights', 'auxLights',
     'openDoor', 'oilSwitch', 'ECUErr', 'fuelLight', 'turn'
   ];
   const elems = [
@@ -76,6 +76,7 @@ const callback = () => {
       setText(battLevel, canData.batt)
       setText(lambda, canData.lambda)
       setText(oilPressure, canData.oilPress)
+      setText(gear, canData['gear'])
       // setText(tps, canData.tps + '%')
     }
 
@@ -94,7 +95,7 @@ const callback = () => {
   setTimeout(() => openConnection(bindRealtimeData), 6000)
 
 
-
+  switchIcons(document.querySelectorAll('.icons img'))
   container.classList.add('anim-in')
 };
 

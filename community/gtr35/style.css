@@ -47,24 +47,37 @@ body {
 .oilFuelCoolGauge {
     top: 50%;
     left: 81%;
-    animation: ponteiros 1s ease-in-out forwards;
-    opacity: 1;
+    animation: slideRightFuel 0.7s ease-in-out forwards;
+    opacity: 0;
 }
 
 .rpmGauge {
-    animation: ponteiros 1s ease-in-out forwards;
+    animation: slideRightRpm 0.7s ease-in-out forwards;
+    animation-delay: 0.5s;
     top: 50%;
     left: 50%;
     z-index: 1;
     filter: drop-shadow(2px 0px 6px black);
-    opacity: 1;
+    opacity: 0;
 }
 
 .speedGauge {
-    animation: ponteiros 1s ease-in-out forwards;
+    animation: slideRightSpeed 0.7s ease-in-out forwards;
+    animation-delay: 1s;
     top: 50%;
     left: 20%;
-    opacity: 1;
+    opacity: 0;
+}
+
+.gearNumber {
+    font-family: "Digital";
+    color: black;
+    font-size: 5rem;
+    position: absolute;
+    top: 15%;
+    text-align: center;
+    right: 64%;
+    text-transform: uppercase;
 }
 
 /* Ponteiros */
@@ -80,7 +93,7 @@ body {
     animation: ponteiros 1s ease-in-out forwards;
     opacity: 0;
     filter: drop-shadow(2px 0px 6px black);
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 .ponteiroSpeed {
@@ -95,7 +108,7 @@ body {
     animation: ponteiros 1s ease-in-out forwards;
     opacity: 0;
     filter: drop-shadow(2px 0px 6px black);
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 .ponteiroFuel {
@@ -108,7 +121,7 @@ body {
     animation: ponteiros 1s ease-in-out forwards;
     opacity: 0;
     filter: drop-shadow(2px 0px 6px black);
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 .ponteiroCoolant {
@@ -121,7 +134,7 @@ body {
     animation: ponteiros 1s ease-in-out forwards;
     opacity: 0;
     filter: drop-shadow(2px 0px 6px black);
-    animation-delay: 1s;
+    animation-delay: 2s;
 }
 
 .oilPressTitle {
@@ -307,12 +320,38 @@ body {
     text-align: right;
 }
 
-@keyframes gauges {
+@keyframes slideRightRpm {
     0% {
-        opacity: 1;
+        left: -24%;
+        opacity: 0;
     }
 
     100% {
+        left: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightFuel {
+    0% {
+        left: -24%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 81%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightSpeed {
+    0% {
+        left: -24%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 20%;
         opacity: 1;
     }
 }
@@ -371,44 +410,60 @@ body {
     opacity: 1;
 }
 
+.icons span {
+    opacity: 0.1;
+    will-change: opacity;
+}
+
+.icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
 .engCheckIcon {
-    width: 12%;
-    top: 62.4%;
-    left: 26%;
+    width: 3%;
+    top: 83.4%;
+    left: 64%;
 }
 
 .eBrakeIcon {
-    width: 12%;
-    top: 62.4%;
-    left: 62.3%;
+    width: 3%;
+    top: 77%;
+    left: 3.3%;
 }
 
 .battIcon {
-    width: 11%;
-    top: 31.6%;
-    left: 26%;
+    width: 3%;
+    top: 80.6%;
+    left: 32%;
 }
 
 .oilIcon {
-    width: 12%;
-    top: 32%;
-    left: 62.3%;
+    width: 3%;
+    top: 17%;
+    left: 3.3%;
 }
 
 .headlightIcon {
-    width: 12%;
-    top: 32%;
-    left: 44.3%;
+    width: 3%;
+    top: 77%;
+    left: 83.3%;
 }
 
 .hheadlightIcon {
-    width: 11%;
-    top: 31%;
-    left: 80.3%;
+    width: 3%;
+    top: 17%;
+    left: 83.3%;
 }
 
-.turnIcon {
-    width: 12%;
-    top: 32%;
-    left: 8.3%;
+.turnLicon {
+    width: 3%;
+    top: 4%;
+    left: 33.3%;
+}
+
+.turnRicon {
+    width: 3%;
+    top: 4%;
+    left: 63.3%;
 }
