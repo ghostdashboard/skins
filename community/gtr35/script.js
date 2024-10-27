@@ -77,7 +77,7 @@ const callback = () => {
       setText(lambda, canData.lambda)
       setText(oilPressure, canData.oilPress)
       setText(gear, canData['gear'])
-      // setText(tps, canData.tps + '%')
+      setText(tps, canData.tps + '%')
     }
 
     updateRPM(useCANForRPM ? canData.rpm : safeReturn(basicData, 'rpm'))
