@@ -16,7 +16,6 @@ const callback = () => {
   const rpmGauge = document.getElementById(`rpm${rpmM}`)
   const maxRpm = rpmM * 1000
   const circularGaugeDashOffset = 11270;
-  let [useCAN, useCANForRPM, useCANForVSS, useCANForCLT] = [false, false, false, false]
 
   rpmGauge.style.display = 'block';
   setRootCSS('--main-color', cMain);
@@ -42,13 +41,6 @@ const callback = () => {
     )
   )
 
-  const checkSource = () => [useCAN, useCANForRPM, useCANForVSS, useCANForCLT] = [
-    useCanChannel(),
-    useCanChannel('sRpm'),
-    useCanChannel('sVss'),
-    useCanChannel('sClt'),
-  ]
-
   const updateData = () => {
     if (!checkCache('useCAN', useCanChannel())) checkSource();
 
@@ -70,8 +62,8 @@ const callback = () => {
     updateOdo(kmTotal, kmTrip, useCANForVSS ? canData.odoNow : basicData.odoNow)
 
     if (isBasicOnline) {
-      setText(fuelLevel, fuelLevelFormat(basicData, 'lvlFuel'))
-      setFuelLevelBar(safeReturn(basicData, 'lvlFuel'))
+      setText(fuelLevel, fuelLevelFormat(basicData, 'lvlFuelF'))
+      setFuelLevelBar(safeReturn(basicData, 'lvlFuelF'))
 
       for(let i = 0; i < signals.length; i++) {
         etoggle(elems[signals[i]], basicData[signals[i]])
@@ -81,16 +73,8 @@ const callback = () => {
     requestAnimationFrame(updateData);
   }
 
-  (() => {
-    if (icon === 1) return
-    const icons = document.querySelectorAll('#top-info img')
-    for (let i = 0; i < icons.length; i++) {
-      icons[i].src = icons[i].src.replace('icons', 'icons_color')
-    }
-  })()
-
+  switchIcons(document.querySelectorAll('#top-info img'))
   setTimeout(() => openConnection(updateData), 6500)
-
   container.classList.add('anim-in')
 };
 

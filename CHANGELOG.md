@@ -1,3 +1,6 @@
+## v1.1.0 (2024-07-02)
+- Updated documentation
+
 ## v1.0.0 (2023-11-23)
 - Initial release
 - New documentation

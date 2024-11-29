@@ -1,0 +1,502 @@
+:root {
+  --rpm-deg: 247deg;
+  --kmh-deg: 230deg;
+  --fuel-deg: 139deg;
+  --clt-deg: 315deg;
+  --oilPres-deg: 450deg;
+  --booster-deg: 271deg;
+}
+
+body,
+html {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #000;
+  color: #eee;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeSpeed;
+  scale: 1.0;
+}
+
+.main {
+  scale: 1.13;
+}
+
+.dark {
+
+}
+
+.light {}
+
+.add-on {
+  display: block;
+}
+
+.add-on#AddOnleft {
+  width: auto;
+  max-width: 212px;
+  position: absolute;
+  top: 66vh;
+  left: 15vw;
+  transform: translate(-50%, -50%);
+  animation: showThree 2s ease-in-out;
+}
+
+.add-on#AddOnright {
+  width: auto;
+  max-width: 212px;
+  position: absolute;
+  top: 66vh;
+  left: 85vw;
+  transform: translate(-50%, -50%);
+  animation: showThree 2s ease-in-out;
+}
+
+.leftV {
+  width: 24%;
+  max-width: 292px;
+  position: absolute;
+  top: 56.6vh;
+  left: 29vw;
+  transform: translate(-50%, -50%);
+  animation: showTwo 2s ease-in-out;
+  filter: drop-shadow(#000 0px 0px 20px);
+}
+
+.centerV {
+  width: 28%;
+  max-width: 356px;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(#000 0px 0px 20px);
+  animation: showFirst 1s ease-in-out;
+}
+
+.rightV {
+  width: 24%;
+  max-width: 292px;
+  position: absolute;
+  top: 56.6vh;
+  left: 71vw;
+  transform: translate(-50%, -50%);
+  animation: showTwo 2s ease-in-out;
+  filter: drop-shadow(#000 0px 0px 20px);
+}
+
+
+.ponteiroSpeed {
+  transform: translate(-50%, -50%) rotate(var(--kmh-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 42px;
+  position: absolute;
+  top: 44.7vh;
+  left: 28.8vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ponteiroRpm {
+  transform: translate(-50%, -50%) rotate(var(--rpm-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 158px;
+  position: absolute;
+  top: 35vh;
+  left: 50vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ponteiroFuel {
+  transform: translate(-50%, -50%) rotate(var(--fuel-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 28px;
+  position: absolute;
+  top: 48.5vh;
+  left: 74.8vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ponteiroOilPress {
+  transform: translate(-50%, -50%) rotate(var(--oilPres-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 32px;
+  position: absolute;
+  top: 57.5vh;
+  left: 84.8vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ponteiroBooster {
+  transform: translate(-50%, -50%) rotate(var(--booster-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 32px;
+  position: absolute;
+  top: 57.5vh;
+  left: 15.2vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.ponteiroTemp {
+  transform: translate(-50%, -50%) rotate(var(--clt-deg));
+  transform-origin: center 85%;
+  width: 4%;
+  max-width: 28px;
+  position: absolute;
+  top: 38.1vh;
+  left: 71vw;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.speedText {
+  position: absolute;
+  left: 200vw;
+  color: #eee;
+  top: 61vh;
+  left: 50vw;
+  font-size: 20px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.speedNumber {
+  position: absolute;
+  color: #eee;
+  top: 70vh;
+  left: 50vw;
+  font-size: 55px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+
+}
+
+.rpmText {
+  position: absolute;
+  left: 200vw;
+  color: #eee;
+  top: 61vh;
+  left: 47vw;
+  font-size: 55px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.rpmNumber {
+  position: absolute;
+  left: 200vw;
+  color: #eee;
+  top: 61vh;
+  left: 47vw;
+  font-size: 55px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+
+.lambda-text {
+  position: absolute;
+  color: #eee;
+  top: 74vh;
+  left: 13vw;
+  font-size: 16px;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.lambda {
+  position: absolute;
+  color: #eee;
+  top: 78vh;
+  left: 13.3vw;
+  font-size: 24px;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.tps-text {
+  position: absolute;
+  color: #eee;
+  top: 74vh;
+  left: 84vw;
+  font-size: 16px;
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.tps {
+  text-align: center;
+  position: absolute;
+  color: #eee;
+  top: 80vh;
+  left: 85.3vw;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.kmtripText {
+  text-align: center;
+  position: absolute;
+  color: #eee;
+  top: 73vh;
+  left: 70.8vw;
+  font-size: 16px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.kmtrip {
+  text-align: center;
+  position: absolute;
+  color: #eee;
+  top: 78vh;
+  left: 70.8vw;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.kmTotalText {
+  text-align: center;
+  position: absolute;
+  color: #eee;
+  top: 73vh;
+  left: 28.8vw;
+  font-size: 16px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.kmTotal {
+  text-align: center;
+  position: absolute;
+  color: #eee;
+  top: 78vh;
+  left: 28.8vw;
+  font-size: 24px;
+  transform: translate(-50%, -50%);
+  animation: ponteiros 1s ease-in-out;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+
+
+#top-info .icons {
+  /* position: absolute;
+  text-align: center;
+  width: 50%;
+  top: 4%;
+  left: 25%; */
+  flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  text-align: center;
+  width: 70%;
+  top: 4%;
+  left: 15%;
+}
+
+#top-info .icons.bottom {
+  bottom: 4%;
+  top: auto;
+}
+
+#top-info .icons span {
+  height: 35px;
+  align-items: center;
+  margin: 0;
+  width: calc(75% / 6);
+  opacity: 0.1;
+  padding: 0;
+  display: inline-block;
+  will-change: opacity;
+}
+
+#top-info .icons #OIL img {
+  max-width: 45px;
+}
+
+#top-info .icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+#top-info .icons span img {
+  width: auto;
+  height: 35px;
+  max-width: 38px;
+  line-height: 40px;
+  display: inline-block;
+  align-self: center;
+}
+
+#top-info .icons .icons-divider {
+  width: 240px;
+}
+
+#top-info .icons .icons-divider img {
+  width: 50px;
+  max-width: inherit;
+  max-height: 50px;
+}
+
+.anim-in #top-gauges,
+.anim-in .toplines {
+  animation-delay: 2s;
+}
+
+.anim-in #top-info {
+  animation-delay: 4s;
+}
+
+.anim-in #centerLeftWidget {
+  animation-delay: 3.5s;
+}
+
+.anim-in #bottom-odo,
+.anim-in .circle .bignumber {
+  animation-delay: 2.5s;
+}
+
+.anim-in .navcursor,
+.anim-in #bottomanimation {
+  animation-delay: 5s;
+}
+
+.anim-in #bottom-odo,
+.anim-in .navcursor,
+.anim-in #bottomanimation,
+.anim-in #centerLeftWidget,
+.anim-in .circle .bignumber {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.anim-in #top-info,
+.anim-in #top-gauges,
+.anim-in .toplines,
+.anim-in #main-gauges {
+  animation-name: zoom-in;
+  animation-timing-function: cubic-bezier(0, 1, 1, 1);
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+}
+
+.anim-in .numbers>div {
+  animation-name: fade-in;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+}
+
+.anim-in .rpmbar,
+.anim-in .kmhbar {
+  animation-name: slide;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  transform: translateY(310px);
+}
+
+@keyframes showFirst {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes showTwo {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes showThree {
+  0% {
+    width: 0px;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes ponteiros {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

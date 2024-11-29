@@ -1,0 +1,493 @@
+:root {
+    --rpm-deg: 220deg;
+    --fuel-deg: 232deg;
+    --clt-deg: 232deg;
+    --kmh-deg: 139deg;
+}
+
+
+@font-face {
+    font-family: 'Digital';
+    src: url(./assets/font/Digital.ttf);
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url(./assets/font/Rubik-Bold.ttf);
+}
+
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    color: #eee;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+    scale: 1.0;
+}
+
+.oilFuelCoolGauge,
+.rpmGauge,
+.speedGauge {
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: gauges 2s ease-in-out forwards;
+}
+
+.oilFuelCoolGauge {
+    top: 50%;
+    left: 81%;
+    animation: slideRightFuel 0.7s ease-in-out forwards;
+    opacity: 0;
+}
+
+.rpmGauge {
+    animation: slideRightRpm 0.7s ease-in-out forwards;
+    animation-delay: 0.5s;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    filter: drop-shadow(2px 0px 6px black);
+    opacity: 0;
+}
+
+.speedGauge {
+    animation: slideRightSpeed 0.7s ease-in-out forwards;
+    animation-delay: 1s;
+    top: 50%;
+    left: 20%;
+    opacity: 0;
+}
+
+.gearNumber {
+    font-family: "Digital";
+    color: black;
+    font-size: 5rem;
+    position: absolute;
+    top: 15%;
+    text-align: center;
+    right: 64%;
+    text-transform: uppercase;
+}
+
+/* Ponteiros */
+.ponteiroRpm {
+    /* width: 13%; */
+    top: 32%;
+    left: 50%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(220deg);
+    transform: translate(-50%, -50%) rotate(var(--rpm-deg));
+    transform-origin: center 85%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 2s;
+}
+
+.ponteiroSpeed {
+    /* width: 12%; */
+    top: 32%;
+    left: 50%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(139deg);
+    transform: translate(-50%, -50%) rotate(var(--kmh-deg));
+    transform-origin: center 85%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 2s;
+}
+
+.ponteiroFuel {
+    top: 67.5%;
+    left: 36.5%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--fuel-deg));
+    transform-origin: center 75%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 2s;
+}
+
+.ponteiroCoolant {
+    top: 42.5%;
+    left: 82.5%;
+    position: absolute;
+    scale: 1.0;
+    transform: translate(-50%, -50%) rotate(var(--clt-deg));
+    transform-origin: center 75%;
+    animation: ponteiros 1s ease-in-out forwards;
+    opacity: 0;
+    filter: drop-shadow(2px 0px 6px black);
+    animation-delay: 2s;
+}
+
+.oilPressTitle {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1rem;
+    color: #F80000;
+    position: absolute;
+    top: 79%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.oilPressNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.4rem;
+    color: #F80000;
+    position: absolute;
+    top: 23%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+}
+
+.fuelPressNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.4rem;
+    color: #F80000;
+    position: absolute;
+    top: 23%;
+    left: 73%;
+    transform: translate(-50%, -50%);
+}
+
+.battNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.4rem;
+    color: #F80000;
+    position: absolute;
+    top: 78.6%;
+    left: 72%;
+    transform: translate(-50%, -50%);
+}
+
+.rpmNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.4rem;
+    color: #F80000;
+    position: absolute;
+    top: 92%;
+    left: 73%;
+    transform: translate(-50%, -50%);
+}
+
+.speedNumber {
+    font-family: "Rubik";
+    font-size: 2rem;
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 73%;
+    transform: translate(-50%, -50%);
+}
+
+.tpsText {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    top: 74%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+}
+
+.tpsNumber {
+    font-family: "Digital";
+    font-size: 1rem;
+    color: #000;
+    position: absolute;
+    top: 75%;
+    left: 53.5%;
+    transform: translate(-50%, -50%);
+}
+
+.lbdText {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000;
+    position: absolute;
+    top: 68%;
+    left: 44%;
+    transform: translate(-50%, -50%);
+}
+
+.lbdNumber {
+    font-family: "Digital";
+    font-size: 1rem;
+    color: #000;
+    position: absolute;
+    top: 69%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+}
+
+
+.bstNumber {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.4rem;
+    color: #F80000;
+    position: absolute;
+    top: 78.6%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+}
+
+.absolute {
+    position: absolute;
+}
+
+.farolBaixo {
+    top: 41%;
+    left: 80%;
+}
+
+.farolete {
+    top: 41%;
+    left: 43.5%;
+}
+
+.luzOleo {
+    top: 41%;
+    left: 62%;
+}
+
+.luzhandbrake {
+    top: 50.5%;
+    left: 62%;
+}
+
+.luzBatt {
+    top: 41%;
+    left: 25.5%;
+}
+
+.engCheck {
+    top: 50.5%;
+    left: 25.5%;
+}
+
+.luzSetas {
+    top: 41%;
+    left: 7.2%;
+}
+
+.luzFarolAlto {
+    top: 41%;
+    left: 7.2%;
+}
+
+.triptext {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: absolute;
+    text-align: center;
+    color: #000000;
+    font-weight: 600;
+    top: 57%;
+    left: 67%;
+    font-size: 0.8rem;
+    transform: translate(-50%, -50%);
+}
+
+.trip {
+    font-family: 'Digital';
+    text-align: left;
+    position: absolute;
+    color: #000000;
+    top: 58%;
+    left: 78%;
+    font-size: 1rem;
+    transform: translate(-50%, -50%);
+}
+
+.kmtotaltext {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: absolute;
+    font-weight: 600;
+    color: #000000;
+    top: 52%;
+    left: 67%;
+    font-size: 0.8rem;
+    transform: translate(-50%, -50%);
+
+}
+
+.kmtotal {
+    font-family: 'Digital';
+    position: absolute;
+    color: #000000;
+    top: 53%;
+    left: 78%;
+    transform: translate(-50%, -50%);
+
+    font-size: 1rem;
+}
+
+.totais {
+    text-align: right;
+}
+
+@keyframes slideRightRpm {
+    0% {
+        left: -24%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 50%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightFuel {
+    0% {
+        left: -24%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 81%;
+        opacity: 1;
+    }
+}
+
+@keyframes slideRightSpeed {
+    0% {
+        left: -24%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 20%;
+        opacity: 1;
+    }
+}
+
+@keyframes ponteiros {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+#container {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    top: 1px;
+    left: 0px;
+    border: none;
+    overflow: hidden;
+    transform: scale(1);
+    max-height: 500px;
+}
+
+#leds span img {
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#leds span[data-etoggle="1"] img {
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.icons span {
+    opacity: 0.1;
+    will-change: opacity;
+}
+
+.icons span[data-etoggle="1"],
+.turn-arrows[data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
+.engCheckIcon {
+    width: 3%;
+    top: 83.4%;
+    left: 64%;
+}
+
+.eBrakeIcon {
+    width: 3%;
+    top: 77%;
+    left: 3.3%;
+}
+
+.battIcon {
+    width: 3%;
+    top: 80.6%;
+    left: 32%;
+}
+
+.oilIcon {
+    width: 3%;
+    top: 17%;
+    left: 3.3%;
+}
+
+.headlightIcon {
+    width: 3%;
+    top: 77%;
+    left: 83.3%;
+}
+
+.hheadlightIcon {
+    width: 3%;
+    top: 17%;
+    left: 83.3%;
+}
+
+.turnLicon {
+    width: 3%;
+    top: 4%;
+    left: 33.3%;
+}
+
+.turnRicon {
+    width: 3%;
+    top: 4%;
+    left: 63.3%;
+}

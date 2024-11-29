@@ -1,0 +1,413 @@
+@font-face {
+    font-family: 'Digital';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../../../assets/fonts/7segment.ttf') format('truetype');
+}
+
+:root {
+    --rpm-deg: 0deg;
+    --kmh-deg: 2deg;
+    --fuel-deg: -3deg;
+    --coolant-deg: -3deg;
+    --oil-pressure-deg: 88deg;
+}
+
+body,
+html,
+#components {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    color: #eee;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+}
+
+#container {
+    opacity: 0.01;
+    transform-origin: center center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.anim-out .circle,
+.anim-out #center-mask,
+.anim-out #bottom-odo {
+    opacity: 1;
+    transform: scale(1);
+    animation-name: fade-out;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: 0.7s;
+}
+
+.anim-out #center-mask {
+    animation-delay: 2s;
+}
+
+#top-info .icons span {
+    opacity: 0.15;
+    position: absolute;
+}
+
+#top-info .icons span[data-etoggle="1"] {
+    opacity: 1 !important;
+}
+
+#top-info {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+}
+
+#top-info section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.fixed {
+    position: absolute;
+}
+
+.icons img {
+    width: 30px;
+    position: absolute;
+}
+
+#turnLeft img {
+    top: 24px;
+    left: 50vw;
+    margin-left: -100px;
+}
+
+#turnRight img {
+    top: 24px;
+    left: 50vw;
+    margin-left: 70px;
+}
+
+#eBrake img {
+    top: 210px;
+    left: 85vw;
+}
+
+#battAlt img {
+    top: 210px;
+    left: 91vw;
+}
+
+#ECUErr img {
+    top: 210px;
+    left: 7vw;
+}
+
+#oilSwitch img {
+    top: 210px;
+    left: 13vw;
+    width: 45px;
+}
+
+#openDoor img {
+    top: 104px;
+    left: 16vw;
+}
+
+#fan img {
+    top: 160px;
+    left: 15vw;
+}
+
+#parkLights img {
+    top: 164px;
+    left: 10vw;
+    width: 40px;
+}
+
+#auxLights img {
+    top: 104px;
+    left: 81vw;
+}
+
+#fogLights img {
+    top: 160px;
+    left: 83vw;
+}
+
+#highBeam img {
+    top: 160px;
+    left: 87vw;
+}
+
+.oilIndicator {
+    bottom: 5px;
+    left: 98px;
+    height: 80px;
+    width: 160px;
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+    display: none;
+}
+
+.oilNeedle {
+    transform: rotate(var(--oil-pressure-deg));
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    top: -80px;
+    left: 20px;
+}
+
+.rpmGauge {
+    position: absolute;
+    height: 356px;
+    width: 356px;
+    top: 5vh;
+    left: 20vw;
+}
+
+.rpmGauge .bg {
+    position: absolute;
+    display: block;
+    height: 356px;
+    width: 356px;
+}
+
+.rpmNeedle {
+    position: absolute;
+    z-index: 3;
+    transform-origin: 127px 29px;
+    transform: rotate(var(--rpm-deg));
+    top: 152px;
+    left: 50px;
+    width: 165px;
+    height: 118px;
+}
+
+.kmhGauge {
+    position: absolute;
+    height: 356px;
+    width: 356px;
+    top: 5vh;
+    right: 20vw;
+}
+
+.kmhGauge .bg {
+    position: absolute;
+    display: block;
+    height: 356px;
+    width: 356px;
+}
+
+.speedNeedle {
+    position: absolute;
+    z-index: 3;
+    transform-origin: 127px 29px;
+    transform: rotate(var(--kmh-deg));
+    top: 152px;
+    left: 50px;
+    width: 165px;
+    height: 118px;
+}
+
+.cltGauge {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 50vh;
+    left: 5vw;
+}
+
+.cltGauge .bg {
+    position: absolute;
+    display: block;
+    height: 200px;
+    width: 200px;
+}
+
+.cltNeedle {
+    position: absolute;
+    z-index: 3;
+    top: 69px;
+    transform: rotate(var(--coolant-deg));
+    left: 39px;
+    transform-origin: 33px 31px;
+}
+
+.fuelGauge {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 50vh;
+    right: 5vw;
+}
+
+.fuelGauge .bg {
+    position: absolute;
+    display: block;
+    height: 200px;
+    width: 200px;
+}
+
+.fuelNeedle {
+    position: absolute;
+    z-index: 3;
+    top: 69px;
+    transform: scaleX(-1) rotate(var(--fuel-deg));
+    right: 7px;
+    transform-origin: 33px 31px;
+}
+
+#kmTotal {
+    position: absolute;
+    bottom: 33px;
+    left: 95px;
+    width: 164px;
+    height: 40px;
+    font-family: 'Digital';
+    z-index: 2;
+    color: #000;
+    font-size: 30px;
+    text-align: right;
+    letter-spacing: 4px;
+    overflow: hidden;
+}
+
+#all-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
+}
+
+#container.connected #all-icons,
+#container.connected .oilIndicator {
+    display: block;
+}
+
+#loader {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loader video {
+    height: 300px;
+    width: 1000px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+#components .bg {
+    opacity: 0.01;
+}
+
+#container.anim-in {
+    animation: 1s fade-in linear forwards;
+}
+
+#container.anim-in #components .bg {
+    animation: 1s fade-in 3.5s linear forwards;
+}
+
+.anim-in .rpmNeedle,
+.anim-in .speedNeedle {
+    animation: 2.5s verify-big-marker 1s ease-in-out;
+}
+
+.anim-in .cltNeedle {
+    animation: 2.5s verify-coolant-marker 1s ease-in-out;
+}
+
+.anim-in .fuelNeedle {
+    animation: 2.5s verify-fuel-marker 1s ease-in-out;
+}
+
+#container.anim-out {
+    opacity: 1;
+    animation-name: anim-out;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-duration: 3s;
+}
+
+@keyframes fade-in {
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes verify-big-marker {
+    0% {
+        transform: rotate(2deg);
+    }
+
+    50% {
+        transform: rotate(249deg);
+    }
+
+    100% {
+        transform: rotate(2deg);
+    }
+}
+
+@keyframes verify-coolant-marker {
+    0% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(-84deg);
+    }
+
+    100% {
+        transform: rotate(-3deg);
+    }
+}
+
+@keyframes verify-fuel-marker {
+    0% {
+        transform: rotate(3deg) scaleX(-1);
+    }
+
+    50% {
+        transform: rotate(84deg) scaleX(-1);
+    }
+
+    100% {
+        transform: rotate(3deg) scaleX(-1);
+    }
+}
+
+@keyframes anim-out {
+    1% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.7) translate(0, 0);
+    }
+    100% {
+      transform: scale(0.7) translate(0, -1000px);
+    }
+  }

@@ -1,0 +1,434 @@
+@font-face {
+  font-family: 'MonoNumbers';
+  font-style: light;
+  font-weight: 400;
+  src: local('ChivoMono Light'), local('ChivoMono-Light'), url('../../assets/fonts/ChivoMono-Light.ttf') format('opentype');
+}
+
+
+@font-face {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Rubik Regular"), local("Rubik-Regular"),
+    url("../assets/fonts/Rubik-Regular.ttf") format("truetype");
+}
+
+:root {
+  --main-color: #00ff00;
+  --fuel-color: #ffffff55;
+  --rpm: 0deg;
+  --clt-needle: 40deg;
+  --fuel-needle: 0deg;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #000;
+  color: #EEE;
+  font-family: "Rubik", sans-serif;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  border: none;
+  overflow: hidden;
+  max-height: 500px;
+  position: relative;
+  display: block;
+  top: 0;
+  opacity: 1;
+  transform-origin: center center;
+}
+
+#mainGauge {
+  width: 599px;
+  height: 450px;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 2;
+  opacity: 0.01;
+  will-change: transform, opacity;
+}
+
+#mainGauge > div {
+  position: absolute;
+  z-index: 4;
+}
+
+#gaugeBg {
+  width: 599px;
+  height: 450px;
+  position: relative;
+  display: block;
+  z-index: 2;
+}
+
+div#fuelGauge {
+  width: 437px;
+  height: 245px;
+  clip-path: polygon(
+    236px 0px,
+    263px 1px,
+    289px 6px,
+    314px 13px,
+    338px 23px,
+    344px 24px,
+    361px 24px,
+    368px 25px,
+    377px 29px,
+    390px 39px,
+    407px 53px,
+    423px 69px,
+    434px 83px,
+    436px 95px,
+    426px 131px,
+    425px 133px,
+    424px 135px,
+    422px 136px,
+    421px 136px,
+    420px 135px,
+    413px 124px,
+    405px 112px,
+    396px 101px,
+    387px 91px,
+    377px 82px,
+    367px 73px,
+    356px 65px,
+    344px 57px,
+    332px 50px,
+    320px 44px,
+    307px 39px,
+    293px 35px,
+    279px 32px,
+    265px 29px,
+    251px 28px,
+    236px 27px,
+    215px 28px,
+    194px 31px,
+    174px 36px,
+    155px 43px,
+    136px 52px,
+    119px 63px,
+    103px 74px,
+    88px 88px,
+    75px 103px,
+    63px 119px,
+    52px 136px,
+    44px 154px,
+    37px 173px,
+    31px 193px,
+    28px 214px,
+    27px 235px,
+    27px 245px,
+    14px 236px,
+    0px 229px,
+    2px 206px,
+    6px 183px,
+    12px 161px,
+    20px 140px,
+    30px 120px,
+    42px 101px,
+    56px 83px,
+    71px 67px,
+    88px 52px,
+    106px 39px,
+    125px 28px,
+    145px 18px,
+    167px 10px,
+    189px 5px,
+    212px 1px,
+    236px 0px
+  );
+  position: absolute;
+  z-index: 1;
+  top: 11px;
+  right: 13px;
+  transform: scale(1.04);
+  background: var(--fuel-color)
+}
+
+#customBg {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.01;
+  will-change: transform, opacity;
+}
+
+#tab {
+  position: absolute;
+  width: 130px;
+  height: 100px;
+  background: var(--main-color);
+  right: -14px;
+  top: 30px;
+  transform: rotate(23deg);
+}
+
+#fuelLevel {
+  width: 450px;
+  height: 400px;
+  position: absolute;
+  background: var(--main-color);
+  top: 234px;
+  right: 0px;
+  transform-origin: 55% top;
+  transform: rotate(var(--fuel-needle));
+}
+
+#speedo {
+  width: 106px;
+  height: 80px;
+  top: 266px;
+  right: 62px;
+  font-size: 58px;
+  text-align: center;
+  font-family: MonoNumbers;
+  transform: scaleX(1.2);
+}
+
+#gear {
+  width: 106px;
+  height: 60px;
+  top: 196px;
+  right: 22px;
+  font-size: 58px;
+  text-align: center;
+}
+
+#cltNeedle {
+  height: 197px;
+  width: 40px;
+  transform-origin: center center;
+  bottom: 0;
+  left: 81px;
+  transform: rotate(var(--clt-needle));
+}
+
+#cltNeedle img {
+  height: 40px;
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+}
+
+#cltNum {
+  padding: 2px 4px;
+  background: #000000CC;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 28px;
+  bottom: 26px;
+  left: 70px;
+  text-align: center;
+  width: 50px;
+}
+
+#rpmNeedle {
+  height: 400px;
+  width: 57px;
+  transform-origin: center center;
+  bottom: 0;
+  right: 185px;
+  transform: rotate(var(--rpm));
+}
+
+#rpmNeedle img {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+
+#top-info {
+  position: absolute;
+  width: 90%;
+  height: 166px;
+  top: 16px;
+  right: 0;
+  box-sizing: border-box;
+  z-index: 20;
+  opacity: 0.01;
+}
+
+#top-info .icons {
+  position: absolute;
+  text-align: center;
+  width: 40%;
+  top: 0;
+  left: 30%;
+}
+
+#top-info .icons.bottom {
+  bottom: 0;
+  top: auto;
+}
+
+#top-info .icons.center {
+  bottom: 56px;
+  top: auto;
+}
+
+#top-info .icons span {
+  height: 35px;
+  width: 55px;
+  opacity: 0;
+  padding: 10px 0px;
+  display: inline-block;
+  will-change: opacity;
+  background: #000B;
+  border-radius: 50px;
+  margin: 0 3px;
+}
+
+#top-info .icons #oilSwitch img {
+  max-width: 45px;
+}
+
+#top-info .icons span[data-etoggle="1"] {
+  opacity: 1 !important;
+}
+
+#top-info .icons span img {
+  width: auto;
+  height: 35px;
+  max-width: 38px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+#bottom-odo {
+  font-size: 20px;
+  height: 80px;
+  width: 160px;
+  z-index: 10;
+  position: absolute;
+  right: 496px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.01;
+  top: 185px;
+}
+
+#bottom-odo > div {
+  text-align: left;
+  align-items: center;
+  align-content: center;
+  background: #000B;
+  border-radius: 10px;
+  padding: 0px 8px;
+  width: 140px;
+  margin: 2px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+#bottom-odo > div > div {
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex: 1;
+}
+
+#bottom-odo span {
+  margin: 4px;
+  font-weight: 700;
+}
+
+#bottom-odo span:last-child {
+  letter-spacing: 2px;
+}
+
+.anim-in #mainGauge {
+  animation-name: grow-in;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 2.5s;
+}
+
+.anim-in #customBg {
+  animation-name: fade-in-zoom;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 2.5s;
+}
+
+.anim-in #top-info,
+.anim-in #bottom-odo {
+  animation-name: fade-in;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 0.6s;
+  animation-delay: 3s;
+}
+
+.anim-out #mainGauge {
+  opacity: 1;
+  animation-name: fade-out;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-delay: 0s;
+}
+
+.anim-out #customBg {
+  opacity: 1;
+  animation-name: fade-out-zoom;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 2.5s;
+  animation-delay: 1s;
+}
+
+.anim-out #top-info,
+.anim-out #bottom-odo {
+  opacity: 1;
+  animation-name: fade-out;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-duration: 0.6s;
+  animation-delay: 0.5s;
+}
+
+/* ANIMATION */
+@keyframes fade-out-zoom {
+  1%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+@keyframes fade-in-zoom {
+  1%   { opacity: 0; transform: scale(2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes grow-in {
+  1%   { opacity: 0; transform: scale(0.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fade-in {
+  1%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  1%   { opacity: 1; }
+  100% { opacity: 0; }
+}

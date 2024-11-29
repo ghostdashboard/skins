@@ -1,22 +1,20 @@
 @font-face {
-  font-family: "Rubik";
+  font-family: 'Rubik';
   font-style: medium;
   font-weight: 600;
-  src: local("Rubik Medium"), local("Rubik-Medium"),
-    url("../../assets/fonts/Rubik-Medium.ttf") format("truetype");
+  src: local('Rubik Medium'), local('Rubik-Medium'), url('../../assets/fonts/Rubik-Medium.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "ChivoMono";
+  font-family: 'CPMono';
   font-style: light;
-  font-weight: 400;
-  src: local("ChivoMono Light"), local("ChivoMono-Light"),
-    url("../../assets/fonts/ChivoMono-Light.ttf") format("opentype");
+  font-weight: 300;
+  src: local('ChivoMono Light'), local('ChivoMono-Light'), url('../../assets/fonts/ChivoMono-Light.ttf') format('opentype');
 }
 
 :root {
   --rpm-bar: 0;
-  --rpm-color: #00d3ff;
+  --rpm-color: #333;
   --lFuel-gauge-bar: 0;
   --clt-gauge-bar: 0;
   --mat-gauge-bar: 0;
@@ -24,7 +22,7 @@
   --rpm-deg: 9deg;
   --kmh-deg: 9deg;
   --main-color: #00d3ff;
-  --second-color: #00d3ff;
+  --second-color: #333;
   --tps-gauge-bar: 11270;
 }
 
@@ -279,7 +277,7 @@ i {
 }
 
 #bottom-odo span {
-  font-family: "ChivoMono";
+  font-family: "CPMono";
   font-size: 22px;
   line-height: 30px;
   letter-spacing: 1px;
@@ -503,7 +501,7 @@ i {
 #side-gauges .centerComponent .value {
   top: 50%;
   font-size: 70px;
-  font-family: "ChivoMono";
+  font-family: "CPMono";
   font-weight: 400;
   letter-spacing: -4px;
   margin: -49px 0 0 0;
@@ -555,7 +553,7 @@ i {
 }
 
 #side-gauges .centerComponent .centerGauge span div:first-child {
-  font-family: "ChivoMono";
+  font-family: "CPMono";
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -624,7 +622,7 @@ i {
 }
 
 #centerRightWidget .mini-gauge .current-value > span {
-  font-family: "ChivoMono";
+  font-family: "CPMono";
   font-size: 18px;
   margin: 0 2px 0 0;
 }
@@ -697,7 +695,7 @@ i {
 }
 
 #centerLeftWidget .micro-gauges .micro-gauge > span {
-  font-family: "ChivoMono";
+  font-family: "CPMono";
   font-size: 32px;
   color: #ffffff;
   display: inline-block;
@@ -735,7 +733,7 @@ i {
   animation-timing-function: ease;
   animation-fill-mode: forwards;
   animation-duration: 1.5s;
-  animation-delay: 7s;
+  animation-delay: 6s;
 }
 
 .anim-in #left-gauge.circle .needle svg,
@@ -762,7 +760,7 @@ i {
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   animation-duration: 1s;
-  animation-delay: 6s;
+  animation-delay: 5s;
 }
 
 [class*="gastep"] {
@@ -774,38 +772,38 @@ i {
   animation-name: fade-in;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
-  animation-duration: 0.45s;
+  animation-duration: 2s;
 }
 
 .gastep1 {
   animation-delay: 1s;
 }
 .gastep2 {
-  animation-delay: 1.5s;
+  animation-delay: 1.2s;
 }
 .gastep3 {
-  animation-delay: 2s;
+  animation-delay: 1.4s;
 }
 .gastep4 {
-  animation-delay: 2.5s;
+  animation-delay: 1.6s;
 }
 .gastep5 {
-  animation-delay: 3s;
+  animation-delay: 1.8s;
 }
 .gastep6 {
-  animation-delay: 3.5s;
+  animation-delay: 2.0s;
 }
 .gastep7 {
-  animation-delay: 4s;
+  animation-delay: 2.2s;
 }
 .gastep8 {
-  animation-delay: 4.5s;
+  animation-delay: 2.4s;
 }
 .gastep9 {
-  animation-delay: 5s;
+  animation-delay: 2.6s;
 }
 .gastep10 {
-  animation-delay: 5.5s;
+  animation-delay: 2.8s;
 }
 
 .anim-out .circle,

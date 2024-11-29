@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GOLGTI</title>
+</head>
+
+<body>
+    <div id="container">
+        <div class="main">
+            <div class="center">
+                <img src="./assets/center.png" alt="">
+                <!-- speedo -->
+                <span id="speedo" class="speedNumber">- - -</span>
+                <!-- rpm -->
+                <span id="rpm" class="rpmNumber">- - -</span>
+                <!-- TPS -->
+                <span id="tps" class="tpsNumber">- - -</span>
+                <!-- Lambda -->
+                <span id="lambda" class="lbdNumber">- - -</span>
+                <!-- Boost -->
+                <span id="mapBoost" class="bstNumber">- - -</span>
+                <!-- oilPress -->
+                <span id="oilPressure" class="oilPressNumber">- - -</span>
+                <!-- fuel -->
+                <span id="fuelPressure" class="fuelPressNumber">- - -</span>
+                <!-- fuel -->
+                <span id="battLevel" class="battNumber">- - -</span>
+                <div id="leds">
+                    <span id="ECUErr"><img src="./assets/ledama.png" class="absolute engCheck" alt="ECUErr"></span>
+                    <span id="turn"><img src="./assets/ledverd.png" class="absolute luzSetas" alt="turn"></span>
+                    <span id="oilSwitch"><img src="./assets/ledverm.png" class="absolute luzOleo"
+                            alt="oilSwitch"></span>
+                    <span id="eBrake"><img src="./assets/ledverm.png" class="absolute luzhandbrake" alt="eBrake"></span>
+                    <span id="battAlt"><img src="./assets/ledverm.png" class="absolute luzBatt" alt="battAlt"></span>
+                    <span id="highBeam"><img src="./assets/ledazl.png" class="absolute farolBaixo"
+                            alt="highBeam"></span>
+                    <span id="parkLights"><img src="./assets/ledverd.png" class="absolute farolete"
+                            alt="parkLights"></span>
+                </div>
+                <div class="icons">
+                    <img src="../../assets/icons/injection.svg" alt="" class="absolute engCheckIcon">
+                    <img src="../../assets/icons/handbrake.svg" alt="" class="absolute eBrakeIcon">
+                    <img src="../../assets/icons/battery.svg" alt="" class="absolute battIcon">
+                    <img src="../../assets/icons/oil.svg" alt="" class="absolute oilIcon">
+                    <img src="../../assets/icons/headlight.svg" alt="" class="absolute headlightIcon">
+                    <img src="../../assets/icons/hheadlight.svg" alt="" class="absolute hheadlightIcon">
+                    <img src="../../assets/icons/turn.svg" alt="" class="absolute turnIcon">
+                </div>
+            </div>
+            <div class="oilFuelCoolGauge">
+                <img src="./assets/pontg.png" class="ponteiroRpm" alt="">
+                <img src="./assets/pontp.png" class="ponteiroCoolant" alt="">
+                <img src="./assets/pontp.png" class="ponteiroFuel" alt="">
+                <img src="./assets/rpmg.png" alt="">
+            </div>
+            <div class="speedGauge">
+                <span class="kmtotaltext">km total</span>
+                <span id="kmTotal" class="kmtotal">000000</span>
+                <span class="triptext">trip</span>
+                <span id="kmTrip" class="trip">000000</span>
+                <img src="./assets/pontg.png" class="ponteiroSpeed" alt="">
+                <img src="./assets/spd.png" alt="">
+            </div>
+        </div>
+        <script src="../../assets/defaultSettings.js" type="text/javascript"></script>
+        <script src="../../assets/client.js" type="text/javascript"></script>
+        <script src="./script.js" type="text/javascript"></script>
+    </div>
+</body>
+
+</html>
